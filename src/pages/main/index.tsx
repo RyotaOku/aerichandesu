@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { CreateStatusFrame } from '@/components/common/createStatusFrame'
 import style from '@/styles/samples/main.module.css'
+// import { Action } from './reducer'
 
 import React, { useReducer } from 'react';
 import { setUsername, setPhone, setEmail, setPassword } from './actioncreator';
@@ -165,7 +166,6 @@ export default function Main() {
     const [userInformation, dispatch] = useReducer(formReducer, initialState);
 
     useEffect(() => {
-        console.log(userInformation);
     }, [userInformation])
 
     function handleInputChange(event: React.ChangeEvent<HTMLInputElement>, actionCreatorFunction: (value: string) => Action) {
@@ -173,24 +173,24 @@ export default function Main() {
     }
 
     //　論理演算子
-    let text = '共産主義'
-    let leader = 'レーニン'
-    // let leader = '志位和夫'
+    // let text = '共産主義'
+    // let leader = 'レーニン'
+    // // let leader = '志位和夫'
 
-    if (text === '共産主義' && leader === 'レーニン') {
-        // textが'共産主義'　かつ、leaderが’レーニン’か？
-        console.log('ソ連だな。');
+    // if (text === '共産主義' && leader === 'レーニン') {
+    //     // textが'共産主義'　かつ、leaderが’レーニン’か？
+    //     console.log('ソ連だな。');
 
-    } else if (text === '共産主義' || leader === 'レーニン') {
-        // textが'共産主義'　または、leaderが’レーニン’か？
-        console.log('ソ連かな？')
+    // } else if (text === '共産主義' || leader === 'レーニン') {
+    //     // textが'共産主義'　または、leaderが’レーニン’か？
+    //     console.log('ソ連かな？')
 
-    } else {
-        // textが'共産主義'　かつ、leaderが’レーニン’ではない。
-        // textが'共産主義'　または、leaderが’レーニン’でもない。
-        console.log('西側諸国か？');
+    // } else {
+    //     // textが'共産主義'　かつ、leaderが’レーニン’ではない。
+    //     // textが'共産主義'　または、leaderが’レーニン’でもない。
+    //     console.log('西側諸国か？');
 
-    }
+    // }
 
     const [state, setState] = useState<string>("")
 
@@ -227,22 +227,26 @@ export default function Main() {
 
             <input
                 value={userInformation.username}
+                style={{ border: '1px solid #000' }}
                 onChange={event => handleInputChange(event, setUsername)}
                 placeholder="Username"
             />
             <input
                 value={userInformation.phone}
+                style={{ border: '1px solid #000' }}
                 onChange={event => handleInputChange(event, setPhone)}
                 placeholder="Phone"
             />
             <input
                 value={userInformation.email}
+                style={{ border: '1px solid #000' }}
                 onChange={event => handleInputChange(event, setEmail)}
                 placeholder="Email"
             />
             <input
                 type="password"
                 value={userInformation.password}
+                style={{ border: '1px solid #000' }}
                 onChange={event => handleInputChange(event, setPassword)}
                 placeholder="Password"
             />

@@ -14,9 +14,9 @@ export type checkboxContents = {
 
 export type checkboxProps = {
     multiple: boolean,
-    fourColumn: boolean
+    fourColumn: boolean,
     contents: checkboxContent[],
-    setSelectedOptions: React.Dispatch<React.SetStateAction<string[]>>,
+    setSelectedOptions: (selectedOptions: string[]) => void,
     selectedOptions: string[]
 }
 

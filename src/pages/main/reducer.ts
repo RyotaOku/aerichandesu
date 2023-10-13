@@ -5,7 +5,7 @@ type userInformationType = {
     password: string;
 };
 
-type Action =
+export type Action =
     | { type: 'SET_USERNAME'; payload: string }
     | { type: 'SET_PHONE'; payload: string }
     | { type: 'SET_EMAIL'; payload: string }

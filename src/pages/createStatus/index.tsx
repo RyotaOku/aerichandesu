@@ -1,14 +1,16 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useReducer } from 'react'
 import style from '@/styles/createStatus/index.module.css'
 import { CreateStatusHeader } from '@/components/createStatus/header'
 import { CreateStatusFrame } from '@/components/common/createStatusFrame'
 import { Select } from '@/components/createStatus/select'
 import { checkboxContent } from '@/components/createStatus/select'
 import { Button } from '@/components/common/button'
+import { userCareerReducer, userCareerType } from './reducer'
+import { setUserField } from './actioncreator'
 
 type CareerAndSkillProps = {
-    setSelectedOptions: React.Dispatch<React.SetStateAction<string[]>>,
-    selectedOptions: string[]
+    userCareer: userCareerType,
+    dispatch: React.Dispatch<string>,
 };
 
 function CareerCategories(props: CareerAndSkillProps) {
@@ -45,6 +47,13 @@ function CareerCategories(props: CareerAndSkillProps) {
         },
     ]
     )
+
+    const handleSelectedOptions = (selectedOptions: string[]) => {
+        if (selectedOptions.length > 0) {
+            // ここでdispatchを使って選択された職種の情報を更新するんや
+            props.dispatch(setUserField(selectedOptions[0])); // 最初の要素を取得するんや
+        }
+    };
 
     return (
         <>
@@ -130,6 +139,13 @@ export default function Main() {
     const [step, setStep] = useState(1)
     const [selectCareer, setSelectCareer] = useState<string[]>([]);
     const maxStep = 6;
+
+    const initialState: userCareerType = {
+        field: '',
+        skill: [],
+        tech: []
+    }
+    const [userCareer, dispatch] = useReducer(userCareerReducer, initialState)
 
     return (
         <CreateStatusFrame>
