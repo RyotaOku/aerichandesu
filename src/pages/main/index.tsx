@@ -172,26 +172,6 @@ export default function Main() {
         dispatch(actionCreatorFunction(event.target.value));
     }
 
-    //　論理演算子
-    // let text = '共産主義'
-    // let leader = 'レーニン'
-    // // let leader = '志位和夫'
-
-    // if (text === '共産主義' && leader === 'レーニン') {
-    //     // textが'共産主義'　かつ、leaderが’レーニン’か？
-    //     console.log('ソ連だな。');
-
-    // } else if (text === '共産主義' || leader === 'レーニン') {
-    //     // textが'共産主義'　または、leaderが’レーニン’か？
-    //     console.log('ソ連かな？')
-
-    // } else {
-    //     // textが'共産主義'　かつ、leaderが’レーニン’ではない。
-    //     // textが'共産主義'　または、leaderが’レーニン’でもない。
-    //     console.log('西側諸国か？');
-
-    // }
-
     const [state, setState] = useState<string>("")
 
     return (
