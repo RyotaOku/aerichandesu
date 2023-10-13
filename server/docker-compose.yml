@@ -45,7 +45,7 @@ services:
     init: true
     ports:
       - "50080:80"
-      - "50112:112"
+      - "50443:443"
     networks:
       template_net:
         ipv4_address: 172.18.0.20
