@@ -1,0 +1,98 @@
+.wrap {
+    margin: 0 auto;
+    width: 90rem;
+    height: 65%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    position: relative;
+}
+
+.inner {
+    height: fit-content;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+    user-select: none;
+}
+
+.inner.halfWrap {
+    flex-wrap: wrap;
+    margin: 0 auto;
+    width: 90rem;
+    height: 65%;
+}
+
+.inner.halfWrap .halfInner {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 2rem;
+}
+
+.inner .radioInput {
+    display: none;
+}
+
+.inner .radio {
+    display: block;
+    width: 16rem;
+    height: 17.5rem;
+    border: 1px solid #d1d1d1;
+    border-radius: 8px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: .1s;
+}
+
+.inner .radio.weaken {
+    width: 12rem;
+    height: 13rem;
+}
+
+.inner .radio::after {
+    content: attr(data-title);
+    position: absolute;
+    display: inline-block;
+    width: fit-content;
+    left: 0;
+    right: 0;
+    bottom: 1rem;
+    margin: 0 auto;
+    font-weight: bold;
+}
+
+.inner .radio .image {
+    display: block;
+    overflow: hidden;
+    width: 80%;
+    height: 60%;
+    margin: 1rem auto 0;
+}
+
+.inner .radio .image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    -webkit-user-drag: none;
+}
+
+
+.inner .radioInput:checked+.radio {
+    background: #006c6114;
+    border: 3px solid #006C61;
+}
+
+.text {
+    /* position: absolute; */
+    text-align: center;
+    bottom: 2rem;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    /* font-weight: bold; */
+    font-size: 1.2rem;
+}
