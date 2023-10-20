@@ -168,7 +168,7 @@ export default function Main() {
     useEffect(() => {
     }, [userInformation])
 
-    function handleInputChange(event: React.ChangeEvent<HTMLInputElement>, actionCreatorFunction: (value: string) => Action) {
+    function handleInputChange(event: React.ChangeEvent<HTMLInputElement>, actionCreatorFunction: (value: string) => any) {
         dispatch(actionCreatorFunction(event.target.value));
     }
 

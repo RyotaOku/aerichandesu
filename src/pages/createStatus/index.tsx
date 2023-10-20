@@ -3,18 +3,18 @@ import style from '@/styles/createStatus/index.module.css'
 import { CreateStatusHeader } from '@/components/createStatus/header'
 import { CreateStatusFrame } from '@/components/common/createStatusFrame'
 import { Select } from '@/components/createStatus/select'
-import { checkboxContent } from '@/components/createStatus/select'
+import { CheckboxContent } from '@/components/createStatus/select'
 import { Button } from '@/components/common/button'
-import { userCareerReducer, userCareerType } from './reducer'
-import { setUserField } from './actioncreator'
+import { userCareerReducer, userCareerType, Action } from './reducer'
+import { setUserField, setSkill, setSkillOptions } from './actioncreator'
 
 type CareerAndSkillProps = {
-    userCareer: userCareerType,
-    dispatch: React.Dispatch<string>,
+    dispatch: React.Dispatch<Action>, // ここを修正
+    selectedOptions: string | string[];  //
 };
 
 function CareerCategories(props: CareerAndSkillProps) {
-    const [state, setState] = useState<checkboxContent[]>([
+    const [state, setState] = useState<CheckboxContent[]>([
         {
             image: '/images/checkIcons/designer.png',
             title: 'デザイナー',
@@ -48,23 +48,32 @@ function CareerCategories(props: CareerAndSkillProps) {
     ]
     )
 
-    const handleSelectedOptions = (selectedOptions: string[]) => {
-        if (selectedOptions.length > 0) {
-            // ここでdispatchを使って選択された職種の情報を更新するんや
-            props.dispatch(setUserField(selectedOptions[0])); // 最初の要素を取得するんや
+    const handleOptionChange = (selectedOptions: string | string[]) => {
+        if (Array.isArray(selectedOptions) && selectedOptions.length === 1) {
+            props.dispatch(setUserField(selectedOptions[0]));
+        } else if (typeof selectedOptions === "string") {
+            props.dispatch(setUserField(selectedOptions));
         }
+        // 他のロジック...
     };
+
 
     return (
         <>
             <h2 className={style.stepTitle}>才能あるあなたのキャリアを彩る、その専門分野を教えてください。</h2>
-            <Select multiple={false} fourColumn={false} contents={state} setSelectedOptions={props.setSelectedOptions} selectedOptions={props.selectedOptions} />
+            <Select
+                multiple={false}
+                fourColumn={false}
+                contents={state}
+                setSelectedOptions={handleOptionChange} // この部分を変更しました。
+                selectedOptions={props.selectedOptions}
+            />
         </>
-    )
+    );
 }
 
 function SkillSelection(props: CareerAndSkillProps) {
-    const [state, setState] = useState<checkboxContent[]>([
+    const [state, setState] = useState<CheckboxContent[]>([
         {
             image: '/images/checkIcons/uiDesign.png',
             title: 'UIデザイン',
@@ -127,17 +136,38 @@ function SkillSelection(props: CareerAndSkillProps) {
         }
     ]);
 
+    const handleOptionChange = (newSelection: string[]) => {
+        // newSelectionはクリックされたオプションの配列です（この場合は1つの要素のみ）
+
+        const option = newSelection[0]; // 複数選択を許容しないので、配列は常に1つの要素を持つはずです
+
+        if (props.selectedOptions.includes(option)) {
+            // すでに選択されている場合、そのオプションを削除します
+            const updatedSelection = props.selectedOptions.filter(item => item !== option);
+            props.dispatch(setSkill(updatedSelection));
+        } else {
+            // それ以外の場合、新しいオプションを追加します
+            const updatedSelection = [...props.selectedOptions, option];
+            props.dispatch(setSkill(updatedSelection));
+        }
+    };
+
     return (
         <>
             <h2 className={style.stepTitle}>あなたのキャリアのハイライト、それはどのジャンルですか？</h2>
-            <Select multiple={true} fourColumn={false} contents={state} setSelectedOptions={props.setSelectedOptions} selectedOptions={props.selectedOptions} />
+            <Select
+                multiple={true}
+                fourColumn={false}
+                contents={state}
+                setSelectedOptions={handleOptionChange}
+                selectedOptions={props.selectedOptions}
+            />
         </>
     )
 }
 
 export default function Main() {
     const [step, setStep] = useState(1)
-    const [selectCareer, setSelectCareer] = useState<string[]>([]);
     const maxStep = 6;
 
     const initialState: userCareerType = {
@@ -145,14 +175,20 @@ export default function Main() {
         skill: [],
         tech: []
     }
+
     const [userCareer, dispatch] = useReducer(userCareerReducer, initialState)
+
+    useEffect(() => {
+        console.log(userCareer);
+    }, [userCareer])
 
     return (
         <CreateStatusFrame>
             <CreateStatusHeader step={step} maxStep={maxStep}
             />
-            {step === 1 && <CareerCategories setSelectedOptions={setSelectCareer} selectedOptions={selectCareer} />}
-            {step === 2 && <SkillSelection setSelectedOptions={setSelectCareer} selectedOptions={selectCareer} />}
+            {step === 1 && <CareerCategories dispatch={dispatch} selectedOptions={userCareer.field} />}
+            {step === 2 && <SkillSelection dispatch={dispatch} selectedOptions={userCareer.skill} />}
+
 
             <Button text={'次へ'} className={style.button} onClick={() => {
                 if (step === maxStep) {

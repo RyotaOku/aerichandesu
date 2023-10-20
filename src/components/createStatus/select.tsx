@@ -1,53 +1,51 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import style from '@/styles/createStatus/select.module.css'
 
-export type checkboxContent = {
+export type CheckboxContent = {
     image: string,
     title: string,
     text: string,
     weaken: boolean,
 }
 
-export type checkboxContents = {
-    contents: checkboxContent[]
+export type CheckboxContents = {
+    contents: CheckboxContent[]
 }
 
-export type checkboxProps = {
-    multiple: boolean,
-    fourColumn: boolean,
-    contents: checkboxContent[],
-    setSelectedOptions: (selectedOptions: string[]) => void,
-    selectedOptions: string[]
+export type SelectProps = {
+    multiple: boolean;
+    fourColumn: boolean;
+    contents: CheckboxContent[];
+    setSelectedOptions: (selectedOptions: string[]) => void; // ここを変更
+    selectedOptions: string[]; // これも変更
 }
 
-export function Select(props: checkboxProps) {
+
+export function Select(props: SelectProps) {
     const [state, setState] = useState('');
 
     const handleCheckboxChange = (title: string) => {
-        props.setSelectedOptions(prev => {
-            if (prev.includes(title)) {
-                return prev.filter(t => t !== title);
-            } else {
-                return [...prev, title];
-            }
-        });
+        if (props.multiple) {
+            const updatedOptions = props.selectedOptions.includes(title)
+                ? props.selectedOptions.filter(t => t !== title)
+                : [...props.selectedOptions, title];
+            props.setSelectedOptions(updatedOptions);
+        } else {
+            props.setSelectedOptions([title]);
+        }
     };
 
-    useEffect(() => {
-        console.log(state);
-    }, [state])
-
-    const renderRadios = (contents: checkboxContent[]) => (
+    const renderRadios = (contents: CheckboxContent[]) => (
         contents.map((v, idx) =>
-            <>
+            <React.Fragment key={idx}>
                 <input
                     key={idx}
                     type={props.multiple ? 'checkbox' : 'radio'}
-                    onChange={() => {
-                        props.multiple ? handleCheckboxChange(v.title) : props.setSelectedOptions([v.title])
-                        setState(v.text)
-                    }}
-                    checked={props.multiple ? props.selectedOptions.includes(v.title) : v.title === props.selectedOptions[0]}
+                    onChange={() => { handleCheckboxChange(v.title) }}
+                    // checked={props.multiple ? (Array.isArray(props.selectedOptions) && props.selectedOptions.includes(v.title)) : v.title === props.selectedOptions}
+
+                    checked={props.multiple ? props.selectedOptions.includes(v.title) : v.title === props.selectedOptions}
+
                     className={style.radioInput}
                     name="radioButton"
                     id={v.title}
@@ -59,6 +57,8 @@ export function Select(props: checkboxProps) {
                         if (!props.multiple && props.selectedOptions.length === 0) {
                             setState(v.text);
                         }
+                        console.log(props.selectedOptions.includes(v.title));
+
                     }}
                     onMouseLeave={() => {
                         if (!props.multiple && state !== '' && props.selectedOptions.length === 0) {
@@ -69,7 +69,7 @@ export function Select(props: checkboxProps) {
                 >
                     <picture className={style.image}><img src={v.image} alt="" /></picture>
                 </label>
-            </>
+            </React.Fragment>
         )
     );
 
