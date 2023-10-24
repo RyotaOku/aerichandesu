@@ -1,0 +1,39 @@
+.wrap {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    border-top: 2px solid #e0e0e0;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.5rem;
+}
+
+.paginator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.paginator span {
+    display: block;
+    border-radius: 50%;
+    background: #e0e0e0;
+    aspect-ratio: 1/1;
+    width: 9px;
+    height: 9px;
+    cursor: pointer;
+}
+
+.paginator span.active {
+    background: #006C61;
+}
+
+.wrap button {
+    font-size: 0.9rem;
+    cursor: pointer;
+    color: #006c61;
+}
+

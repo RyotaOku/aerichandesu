@@ -1,0 +1,92 @@
+.background {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: #ebebeb;
+    min-width: 1100px;
+    position: relative;
+}
+
+.wrap {
+    width: 70%;
+    height: 70%;
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    border-radius: 6px;
+    background: #fff;
+    box-shadow: 0 0 20px rgba(90, 90, 90, 0.3);
+}
+
+.wrap::before {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 100%;
+    background: #006C61;
+    top: 0;
+    height: 6px;
+    border-radius: 6px 6px 0 0;
+}
+
+.wrap .resultTitle {
+    text-align: center;
+    margin-top: 2rem;
+    color: #006c61;
+    font-weight: bold;
+}
+
+.wrap .resultTitle span {
+    display: block;
+    width: fit-content;
+    margin: 0 auto 1rem;
+    font-size: 1rem;
+    color: #000;
+    font-weight: normal;
+}
+
+.wrap .imageWrap {
+    display: block;
+    height: 20rem;
+    margin: 3rem auto 2rem;
+    width: 70%;
+    border: 1px solid #dbdbdb;
+}
+
+.wrap .text {
+    text-align: center;
+    width: 70%;
+    margin: 0 auto;
+}
+
+.wrap .subTitle {
+    color: #006c61;
+    margin: 3rem 10% 1rem;
+}
+
+.wrap .parent {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    width: 80%;
+    height: 26rem;
+    margin: 0 auto;
+}
+
+.wrap .parent>* {
+    border: 1px solid #000;
+}
+
+.subResultImage {
+    grid-area: 1 / 1 / 3 / 2;
+}
+
+.div2 {
+    grid-area: 1 / 2 / 2 / 3;
+}
+
+.div3 {
+    grid-area: 2 / 2 / 3 / 3;
+}
