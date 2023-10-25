@@ -61,16 +61,16 @@
 
 .wrap .subTitle {
     color: #006c61;
-    margin: 3rem 10% 1rem;
+    margin: 3rem 6% 1rem;
 }
 
 .wrap .parent {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 40% 1fr;
     grid-template-rows: repeat(2, 1fr);
     grid-column-gap: 0px;
     grid-row-gap: 0px;
-    width: 80%;
+    width: 88%;
     height: 26rem;
     margin: 0 auto;
 }

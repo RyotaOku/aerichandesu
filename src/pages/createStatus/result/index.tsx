@@ -23,9 +23,10 @@ export default function Result(props: Props) {
                 <h2 className={style.subTitle}>得意な領域</h2>
                 <div className={style.parent}>
                     <picture className={style.subResultImage}><img src="" alt="" /></picture>
-                    <div className={style.div2}><Status />
-                    </div>
-                    <div className={style.div3}><p className={style.statusText}></p></div>
+                    <div className={style.div2}><Status /></div>
+                    <div className={style.div3}><p className={style.statusText}>
+                        基本的にどのようなタスクでもこなし、枠にハマった考え方をしない優秀なオールラウンダーです。それぞれの分野にも得意分野があります。それぞれの分野にも得意分野があります。
+                    </p></div>
                 </div>
                 <Footer activeIndex={activeIndex} onClick={handleClick} />
             </div>
