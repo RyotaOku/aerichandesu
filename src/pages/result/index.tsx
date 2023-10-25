@@ -2,8 +2,8 @@ import style from '@/styles/createStatus/result/result.module.css'
 import Footer from 'components/createStatus/result/footer'
 import { useState } from 'react'
 import Status from 'components/createStatus/result/status'
-import { CreateStatusFrame } from '@/components/common/createStatusFrame'
-import { statusArray, result } from '@/pages/types/resultTypes'
+import { CreateStatusFrame } from '@/components/common/Frame'
+import { statusArray, result } from '@/types/resultTypes'
 
 type Props = {
     text: string

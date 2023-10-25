@@ -1,11 +1,16 @@
 import style from '@/styles/components/common/frame.module.css'
 
-type Props = {
-    children?: React.ReactNode
+// Frameコンポーネントに渡せるprops（プロパティ）の型を定義
+export type FrameProps = {
+    children?: React.ReactNode // 子コンポーネント（オプショナル）
 }
 
-export function Frame({ children }: Props) {
-    <div className={style.wrap}>
-        {children}
-    </div>
+// Frameコンポーネントの定義。このFrameコンポーネントで各画面の幅やスタイルを統一して実装。
+export function CreateStatusFrame(props: FrameProps) {
+    return (
+        <div className={style.frame}>
+            {/* 子コンポーネントを表示 */}
+            {props.children}
+        </div>
+    )
 }

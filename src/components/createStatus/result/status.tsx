@@ -1,5 +1,5 @@
 import style from '@/styles/components/result/status.module.css'
-import { statusArray, result } from '@/pages/types/resultTypes'
+import { statusArray, result } from '@/types/resultTypes'
 
 type Props = {
     status: statusArray

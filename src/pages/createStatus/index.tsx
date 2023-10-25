@@ -1,7 +1,7 @@
 import { useState, useEffect, useReducer } from 'react'
 import style from '@/styles/createStatus/index.module.css'
 import { CreateStatusHeader } from '@/components/createStatus/header'
-import { CreateStatusFrame } from '@/components/common/createStatusFrame'
+import { CreateStatusFrame } from '@/components/common/Frame'
 import { Select } from '@/components/createStatus/select'
 import { CheckboxContent } from '@/components/createStatus/select'
 import { Button } from '@/components/common/button'
