@@ -15,6 +15,7 @@ export default function Main() {
 
     return (
         <div>
+            <p>reducerを用いたstateの変更</p>
             <input style={{ border: '1px solid #000' }} type="text" value={state.userName} onChange={(e) => {
                 InputChange(e, change)
             }} />

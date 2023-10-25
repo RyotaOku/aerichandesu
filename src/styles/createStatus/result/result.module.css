@@ -9,7 +9,7 @@
 
 .wrap {
     width: 70%;
-    height: 70%;
+    height: 60%;
     position: absolute;
     inset: 0;
     margin: auto;
@@ -47,9 +47,9 @@
 
 .wrap .imageWrap {
     display: block;
-    height: 20rem;
+    height: 15rem;
     margin: 3rem auto 2rem;
-    width: 70%;
+    width: 50%;
     border: 1px solid #dbdbdb;
 }
 
@@ -61,7 +61,7 @@
 
 .wrap .subTitle {
     color: #006c61;
-    margin: 3rem 6% 1rem;
+    margin: 4rem 6% 2rem;
 }
 
 .wrap .parent {
@@ -71,12 +71,8 @@
     grid-column-gap: 0px;
     grid-row-gap: 0px;
     width: 88%;
-    height: 26rem;
+    height: 20rem;
     margin: 0 auto;
-}
-
-.wrap .parent>* {
-    border: 1px solid #000;
 }
 
 .subResultImage {
@@ -89,4 +85,10 @@
 
 .div3 {
     grid-area: 2 / 2 / 3 / 3;
+    display: flex;
+    align-items: center;
+}
+
+.statusText {
+    text-align: center;
 }

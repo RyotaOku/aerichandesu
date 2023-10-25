@@ -11,12 +11,13 @@ export default function Todo() {
 
     return (
         <>
+            <p>react tsでTodoリストを作成(reducer ver.)</p>
             <input type="text" style={{ border: '1px solid #000' }} value={state.text} onChange={(e) => {
                 dispatch({ type: 'ADD_TEXT', payload: e.target.value })
             }} />
             <button onClick={() => {
                 dispatch({ type: 'ADD_LIST', payload: state.text })
-            }}>三上悠亜</button>
+            }}>追加！</button>
             <ul>
                 {state.list.map((v, idx) => <li key={idx}>{v}</li>)}
             </ul>

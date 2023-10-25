@@ -25,11 +25,12 @@ export default function Main() {
 
     return (
         <>
+            <p>reducerを用いて、認証の状態を管理する</p>
             <h2>ユーザー名: {state.userName}</h2>
             <input type="text" value={pass} onChange={(e) => { setPass(e.target.value) }} style={{ border: '1px solid #000' }} />
             <button onClick={() => {
                 handleClick()
-            }}>tinpoko</button>
+            }}>ログイン</button>
             {state.isLoading && <div style={{ background: '#0000000f', width: '100%', height: '100vh' }}><ProgressSpinner style={{ position: 'fixed', inset: '50%' }} /></div>}
         </>
     )

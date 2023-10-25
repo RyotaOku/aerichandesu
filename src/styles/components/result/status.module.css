@@ -1,1 +1,55 @@
-.
+.statusResult {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+}
+
+.barWrap {
+    position: relative;
+    height: 10px;
+    width: 100%;
+    /* border: 1px solid #000; */
+    overflow: hidden;
+    border-radius: 50px;
+    margin-bottom: 0.6rem;
+}
+
+.barWrap .barLeft,
+.barWrap .barRight {
+    height: 100%;
+    width: 0%;
+    background: #e8e8e8;
+    transition: background, width 0.3s ease-in-out;
+}
+
+.barWrap .barLeft {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.barWrap .barRight {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.barWrap .barLeft.active,
+.barWrap .barRight.active {
+    background: #006C61;
+}
+
+.textWrap {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.textWrap .textRight {
+    text-align: right;
+}
+
+.textWrap .textLeft.active,
+.textWrap .textRight.active {
+    color: #006C61;
+}

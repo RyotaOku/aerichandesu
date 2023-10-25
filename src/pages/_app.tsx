@@ -16,6 +16,11 @@ const notoSansJP = Noto_Sans_JP({
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
+      <style jsx global>{`
+    html,body {
+      color: #545454;
+    }
+  `}</style>
       <Component {...pageProps} />
     </>
   )
