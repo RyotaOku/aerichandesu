@@ -1,4 +1,4 @@
-import { Action } from './reducer'
+import { Action } from '../../lib/createStatusReducer'
 
 export function setUserField(field: string): Action {
     return {

@@ -1,5 +1,4 @@
-import style from '@/styles/createStatus/header.module.css'
-import { useState, useRef, useEffect } from 'react'
+import style from '@/styles/component/createStatus/header.module.css'
 
 type headerProps = {
     step: number

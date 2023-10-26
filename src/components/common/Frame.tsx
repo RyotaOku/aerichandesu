@@ -6,7 +6,7 @@ export type FrameProps = {
 }
 
 // Frameコンポーネントの定義。このFrameコンポーネントで各画面の幅やスタイルを統一して実装。
-export function CreateStatusFrame(props: FrameProps) {
+export function Frame(props: FrameProps) {
     return (
         <div className={style.frame}>
             {/* 子コンポーネントを表示 */}

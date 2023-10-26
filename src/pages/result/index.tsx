@@ -1,9 +1,10 @@
-import style from '@/styles/createStatus/result/result.module.css'
-import Footer from 'components/createStatus/result/footer'
-import { useState } from 'react'
-import Status from 'components/createStatus/result/status'
-import { CreateStatusFrame } from '@/components/common/Frame'
+import { useState, useReducer } from 'react'
+import style from '@/styles/result/result.module.css'
+import Footer from '@/components/result/Footer'
+import Status from '@/components/result/StatusData'
+import { Frame } from '@/components/common/Frame'
 import { statusArray, result } from '@/types/resultTypes'
+import { resultReducer, globalState, Action } from '@/lib/resultReducer'
 
 type Props = {
     text: string
@@ -43,51 +44,120 @@ function OtherResult({ status }: OtherResultProps) {
     )
 }
 
+const result = {
+    title: '万能のスイスアーミーナイフ',
+    image: '',
+    text: '基本的にどのようなタスクでもこなし、枠にハマった考え方をしない優秀なオールラウンダーです。それぞれの分野にも得意分野があります。',
+    status: [
+        {
+            title: '得意な領域',
+            image: '',
+            leftText: '独立性',
+            leftPercent: '64%',
+            rightText: 'チーム作業',
+            rightPercent: '36%',
+            text: '基本的にどのようなタスクでもこなし、枠にハマった考え方をしない優秀なオールラウンダーです。それぞれの分野にも得意分野があります。'
+        },
+        {
+            title: '論理性と創造性',
+            image: '',
+            leftText: '分析思考',
+            leftPercent: '48%',
+            rightText: '創造性',
+            rightPercent: '52%',
+            text: '基本的にどのようなタスクでもこなし、枠にハマった考え方をしない優秀なオールラウンダーです。それぞれの分野にも得意分野があります。'
+        },
+        {
+            title: '論理性と創造性',
+            image: '',
+            leftText: '分析思考',
+            leftPercent: '22%',
+            rightText: '創造性',
+            rightPercent: '78%',
+            text: '基本的にどのようなタスクでもこなし、枠にハマった考え方をしない優秀なオールラウンダーです。それぞれの分野にも得意分野があります。'
+        },
+        {
+            title: '論理性と創造性',
+            image: '',
+            leftText: '分析思考',
+            leftPercent: '64%',
+            rightText: '創造性',
+            rightPercent: '36%',
+            text: '基本的にどのようなタスクでもこなし、枠にハマった考え方をしない優秀なオールラウンダーです。それぞれの分野にも得意分野があります。'
+        },
+        {
+            title: '論理性と創造性',
+            image: '',
+            leftText: '分析思考',
+            leftPercent: '48%',
+            rightText: '創造性',
+            rightPercent: '52%',
+            text: '基本的にどのようなタスクでもこなし、枠にハマった考え方をしない優秀なオールラウンダーです。それぞれの分野にも得意分野があります。'
+        },
+        {
+            title: '論理性と創造性',
+            image: '',
+            leftText: '分析思考',
+            leftPercent: '48%',
+            rightText: '創造性',
+            rightPercent: '52%',
+            text: '基本的にどのようなタスクでもこなし、枠にハマった考え方をしない優秀なオールラウンダーです。それぞれの分野にも得意分野があります。'
+        },
+        {
+            title: '論理性と創造性',
+            image: '',
+            leftText: '分析思考',
+            leftPercent: '48%',
+            rightText: '創造性',
+            rightPercent: '52%',
+            text: '基本的にどのようなタスクでもこなし、枠にハマった考え方をしない優秀なオールラウンダーです。それぞれの分野にも得意分野があります。'
+        },
+        {
+            title: '論理性と創造性',
+            image: '',
+            leftText: '分析思考',
+            leftPercent: '48%',
+            rightText: '創造性',
+            rightPercent: '52%',
+            text: '基本的にどのようなタスクでもこなし、枠にハマった考え方をしない優秀なオールラウンダーです。それぞれの分野にも得意分野があります。'
+        }
+    ]
+}
+
 export default function Result(props: Props) {
-    const result = {
-        title: '万能のスイスアーミーナイフ',
-        image: '',
-        text: '基本的にどのようなタスクでもこなし、枠にハマった考え方をしない優秀なオールラウンダーです。それぞれの分野にも得意分野があります。',
-        status: [
-            {
-                title: '得意な領域',
-                image: '',
-                leftText: '独立性',
-                leftPercent: '64%',
-                rightText: 'チーム作業',
-                rightPercent: '36%',
-                text: '基本的にどのようなタスクでもこなし、枠にハマった考え方をしない優秀なオールラウンダーです。それぞれの分野にも得意分野があります。'
-            },
-            {
-                title: '論理性と創造性',
-                image: '',
-                leftText: '分析思考',
-                leftPercent: '48%',
-                rightText: '創造性',
-                rightPercent: '52%',
-                text: '基本的にどのようなタスクでもこなし、枠にハマった考え方をしない優秀なオールラウンダーです。それぞれの分野にも得意分野があります。'
-            }
-        ]
+    const initialState: globalState = {
+        index: 0
     }
 
-    const [activeIndex, setActiveIndex] = useState(0);
+    const [activeIndex, dispatch] = useReducer(resultReducer, initialState);
 
-    const [page, setPage] = useState<number>(0)
+    // const handleClick = (index: number) => {
+    //     // setActiveIndex(index);  // クリックされたインデックスをアクティブにする
+    // };
 
-    const handleClick = (index: number) => {
-        setActiveIndex(index);  // クリックされたインデックスをアクティブにする
-    };
+    const handleClick = (action: 'NEXT_INDEX' | 'PREV_INDEX' | 'SET_INDEX', index?: number) => {
+        switch (action) {
+            case 'NEXT_INDEX':
+                dispatch({ type: 'NEXT_INDEX' });
+                break;
+            case 'PREV_INDEX':
+                dispatch({ type: 'PREV_INDEX' });
+                break;
+            case 'SET_INDEX':
+                dispatch({ type: 'SET_INDEX', payload: index ?? 0 });
+                break;
+        };
+    }
 
     return (
-        <CreateStatusFrame>
+        <Frame>
             <div className={style.background}>
                 <div className={style.wrap}>
-                    {page === 0 && <FirstResult result={result} />}
-                    {page !== 0 && <OtherResult status={result.status[page - 1]} />}
-                    <button onClick={() => { setPage(page + 1) }}>next level</button>
-                    <Footer activeIndex={activeIndex} onClick={handleClick} />
+                    {activeIndex.index === 0 && <FirstResult result={result} />}
+                    {activeIndex.index !== 0 && <OtherResult status={result.status[activeIndex.index - 1]} />}
+                    <Footer activeIndex={activeIndex.index} onClick={handleClick} />
                 </div>
             </div>
-        </CreateStatusFrame>
+        </Frame>
     )
 }

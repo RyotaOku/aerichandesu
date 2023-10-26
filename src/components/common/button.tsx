@@ -1,12 +1,12 @@
-import style from '@/styles/components/button.module.css';
+import style from '@/styles/components/common/button.module.css';
 
-type buttonProps = {
+type ButtonProps = {
     text: string
     className?: string
     onClick?: () => void
 }
 
-export function Button(props: buttonProps) {
+export function Button(props: ButtonProps) {
     const handleClick = () => {
         // onClickプロパティが指定されている場合、その関数を呼び出す
         if (props.onClick) {

@@ -1,12 +1,12 @@
 import { useState, useEffect, useReducer } from 'react'
 import style from '@/styles/createStatus/index.module.css'
-import { CreateStatusHeader } from '@/components/createStatus/header'
-import { CreateStatusFrame } from '@/components/common/Frame'
-import { Select } from '@/components/createStatus/select'
-import { CheckboxContent } from '@/components/createStatus/select'
-import { Button } from '@/components/common/button'
-import { userCareerReducer, userCareerType, Action } from './reducer'
-import { setUserField, setSkill, setSkillOptions } from './actioncreator'
+import { CreateStatusHeader } from '@/components/createStatus/Header'
+import { Frame } from '@/components/common/Frame'
+import { Select } from '@/components/createStatus/Select'
+import { CheckboxContent } from '@/components/createStatus/Select'
+import { Button } from '@/components/common/Button'
+import { userCareerReducer, userCareerType, Action } from '../../lib/createStatusReducer'
+import { setUserField, setSkill, setSkillOptions } from '../../actions/createStatus/actioncreator'
 
 type CareerAndSkillProps = {
     dispatch: React.Dispatch<Action>, // ここを修正
@@ -183,7 +183,7 @@ export default function Main() {
     }, [userCareer])
 
     return (
-        <CreateStatusFrame>
+        <Frame>
             <CreateStatusHeader step={step} maxStep={maxStep}
             />
             {step === 1 && <CareerCategories dispatch={dispatch} selectedOptions={userCareer.field} />}
@@ -197,6 +197,6 @@ export default function Main() {
                     setStep(step + 1)
                 }
             }} />
-        </CreateStatusFrame>
+        </Frame>
     )
 }

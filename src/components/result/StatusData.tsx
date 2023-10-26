@@ -1,4 +1,4 @@
-import style from '@/styles/components/result/status.module.css'
+import style from '@/styles/components/result/statusData.module.css'
 import { statusArray, result } from '@/types/resultTypes'
 
 type Props = {
@@ -7,7 +7,7 @@ type Props = {
 
 export default function Status({ status }: Props) {
     // この関数はアクティブなクラス名を返します。
-    function getActiveClass(isLeft: any) {
+    function getActiveClass(isLeft: boolean) {
         if (isLeft) {
             return parseInt(status.leftPercent) > parseInt(status.rightPercent) ? style.active : '';
         } else {
