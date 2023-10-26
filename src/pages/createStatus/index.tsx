@@ -16,7 +16,7 @@ type CareerProps = {
 type SkillProps = {
     dispatch: React.Dispatch<Action>,
     selectedOptions: string | string[]
-    field: 'designer' | 'engineer' | 'director' | 'allRounder' | 'other' | string
+    field: string
 }
 
 function CareerCategories(props: CareerProps) {

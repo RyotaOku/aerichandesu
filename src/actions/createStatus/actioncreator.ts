@@ -59,7 +59,7 @@ export function getSkillData(field: string) {
                 weaken: false
             },
             {
-                image: '/images/checkIcons/printDesign.png',
+                image: '/images/checkIcons/print.png',
                 title: 'プリントデザイン',
                 text: '',
                 weaken: false
@@ -269,7 +269,7 @@ export function getSkillData(field: string) {
                 weaken: false
             },
             {
-                image: '/images/checkIcons/printDesign.png',
+                image: '/images/checkIcons/print.png',
                 title: 'プリントデザイン',
                 text: '',
                 weaken: false
