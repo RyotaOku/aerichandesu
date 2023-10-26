@@ -5,13 +5,18 @@ import { Frame } from '@/components/common/Frame'
 import { Select } from '@/components/createStatus/Select'
 import { CheckboxContent } from '@/types/carrierTypes'
 import { Button } from '@/components/common/Button'
-import { userCareerReducer, userCareerType, Action } from '../../lib/createStatusReducer'
+import { userCareerReducer, userCareerType, Action } from '@/lib/createStatusReducer'
+import { createStatusIndexReducer, IndexAction, globalState } from '@/lib/createStatusIndexReducer'
 import { getFieldData, getSkillData } from '@/actions/createStatus/actioncreator'
 
 type CareerProps = {
     dispatch: React.Dispatch<Action>,
     selectedOptions: string | string[]
 };
+
+type InputVisionProps = {
+    dispatch: React.Dispatch<any>,
+}
 
 type SkillProps = {
     dispatch: React.Dispatch<Action>,
@@ -42,6 +47,39 @@ function CareerCategories(props: CareerProps) {
     );
 }
 
+function InputVision(props: InputVisionProps) {
+    const vision = [
+        {
+            text: '3年以内に自分のスタートアップを立ち上げ、革新的なサービスを提供したい。',
+            image: '/images/vision/vision1.png'
+        },
+        {
+            text: '5年後には大手企業のデザインリーダーとして活躍したい',
+            image: '/images/vision/vision2.png'
+        },
+        {
+            text: '独立してフリーランスのエンジニアとして多種多様なプロジェクトに携わりたい。',
+            image: '/images/vision/vision3.png'
+        },
+    ]
+
+    return (
+        <>
+            <h2 className={style.stepTitle}>未来を描く一歩、あなたのビジョンを共有してください。</h2>
+            <input type="text" className={style.visionInput} placeholder='大胆に綴ってみましょう' />
+            <p className={style.visionText}>以下がその参考になるかもしれません。</p>
+            <div className={style.visionsWrap}>
+                {vision.map((v, idx) => (
+                    <div key={idx} className={style.vision}>
+                        <p>{v.text}</p>
+                        <picture><img src={v.image} alt="" /></picture>
+                    </div>
+                ))}
+            </div>
+        </>
+    )
+}
+
 function SkillSelection(props: SkillProps) {
     const [state, setState] = useState<CheckboxContent[]>([])
 
@@ -66,34 +104,37 @@ function SkillSelection(props: SkillProps) {
 }
 
 export default function Main() {
-    const [step, setStep] = useState(1)
-    const maxStep = 6;
+    const initialIndex: globalState = {
+        index: 2,
+        maxStep: 6
+    }
+    const [step, indexDispatch] = useReducer(createStatusIndexReducer, initialIndex)
 
     const initialState: userCareerType = {
         field: '',
+        vision: '',
         skill: [],
         tech: []
     }
-
-    const [userCareer, dispatch] = useReducer(userCareerReducer, initialState)
+    const [userCareer, userCareerDispatch] = useReducer(userCareerReducer, initialState)
 
     return (
         <Frame>
-            <CreateStatusHeader step={step} maxStep={maxStep}
-            />
-            <div style={{ border: '1px solid #000' }}>
+            <CreateStatusHeader step={step.index} maxStep={step.maxStep} dispatch={indexDispatch} />
+            <div style={{ border: '1px solid #000', position: 'fixed', top: 0 }}>
                 結果
                 <p>{userCareer.field}</p>
                 <p>{userCareer.skill}</p>
             </div>
-            {step === 1 && <CareerCategories dispatch={dispatch} selectedOptions={userCareer.field} />}
-            {step === 2 && <SkillSelection dispatch={dispatch} selectedOptions={userCareer.skill} field={userCareer.field} />}
+            {step.index === 1 && <CareerCategories dispatch={userCareerDispatch} selectedOptions={userCareer.field} />}
+            {step.index === 2 && <InputVision dispatch={userCareerDispatch} />}
+            {step.index === 3 && <SkillSelection dispatch={userCareerDispatch} selectedOptions={userCareer.skill} field={userCareer.field} />}
 
             <Button text={'次へ'} className={style.button} onClick={() => {
-                if (step === maxStep) {
+                if (step.index === step.maxStep) {
                     return
                 } else {
-                    setStep(step + 1)
+                    indexDispatch({ type: 'NEXT_INDEX' })
                 }
             }} />
         </Frame>

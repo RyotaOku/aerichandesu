@@ -4,7 +4,7 @@ import Footer from '@/components/result/Footer'
 import Status from '@/components/result/StatusData'
 import { Frame } from '@/components/common/Frame'
 import { statusArray, result } from '@/types/resultTypes'
-import { resultReducer, globalState, Action } from '@/lib/resultReducer'
+import { resultIndexReducer, globalState, Action } from '@/lib/resultIndexReducer'
 
 type Props = {
     text: string
@@ -129,11 +129,7 @@ export default function Result(props: Props) {
         index: 0
     }
 
-    const [activeIndex, dispatch] = useReducer(resultReducer, initialState);
-
-    // const handleClick = (index: number) => {
-    //     // setActiveIndex(index);  // クリックされたインデックスをアクティブにする
-    // };
+    const [activeIndex, dispatch] = useReducer(resultIndexReducer, initialState);
 
     const handleClick = (action: 'NEXT_INDEX' | 'PREV_INDEX' | 'SET_INDEX', index?: number) => {
         switch (action) {

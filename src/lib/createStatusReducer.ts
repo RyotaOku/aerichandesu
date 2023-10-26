@@ -1,5 +1,6 @@
 export type userCareerType = {
     field: string;
+    vision: string;
     skill: string[];
     tech: string[];
 }

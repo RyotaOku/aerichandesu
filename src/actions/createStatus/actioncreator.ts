@@ -372,7 +372,7 @@ export function getSkillData(field: string) {
             key = 'other';
             break;
         default:
-            throw new Error(`Invalid field: ${field}`);
+            key = 'other';
     }
 
     return data[key];

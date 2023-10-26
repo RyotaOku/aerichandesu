@@ -12,3 +12,21 @@
     right: 0;
     margin: 0 auto;
 }
+
+.visionInput {
+    display: block;
+    border: 1px solid #bbb;
+    width: 60%;
+    height: 3.2rem;
+    border-radius: 6px;
+    margin: 0 auto;
+    padding: 0 0 0 1rem;
+}
+
+.visionInput::placeholder {
+    color: #989898;
+}
+
+.visionText {
+    text-align: center;
+}

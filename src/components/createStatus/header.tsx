@@ -1,8 +1,10 @@
 import style from '@/styles/components/createStatus/header.module.css'
+import { IndexAction } from '@/lib/createStatusIndexReducer';
 
 type headerProps = {
     step: number
-    maxStep: number
+    maxStep: number,
+    dispatch: React.Dispatch<IndexAction>
 }
 
 export function CreateStatusHeader(props: headerProps) {
@@ -11,7 +13,9 @@ export function CreateStatusHeader(props: headerProps) {
     return (
         <div className={style.header}>
             <div className={style.headerContents}>
-                <button className={style.prev} onClick={() => { }}>
+                <button className={style.prev} onClick={() => {
+                    props.dispatch({ type: 'PREV_INDEX' })
+                }}>
                     戻る
                 </button>
             </div>
