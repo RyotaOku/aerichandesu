@@ -1,4 +1,4 @@
-import style from '@/styles/component/createStatus/header.module.css'
+import style from '@/styles/components/createStatus/header.module.css'
 
 type headerProps = {
     step: number

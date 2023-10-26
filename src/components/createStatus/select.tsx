@@ -22,84 +22,84 @@ export type SelectProps = {
     updateType: 'SET_USER_FIELD' | 'SET_USER_SKILL' | 'SET_USER_TECH'
 }
 
-export default function Main() {
-    const initialState: userCareerType = {
-        field: '',
-        skill: [],
-        tech: [],
-    }
+// export default function Main() {
+//     const initialState: userCareerType = {
+//         field: '',
+//         skill: [],
+//         tech: [],
+//     }
 
-    const [selectOptions, dispatch] = useReducer(userCareerReducer, initialState)
+//     const [selectOptions, dispatch] = useReducer(userCareerReducer, initialState)
 
-    const props = {
-        multiple: false,
-        fourColumn: false,
-        contents: [{
-            image: '/images/checkIcons/uiDesign.png',
-            title: 'UIデザイン',
-            text: '',
-            weaken: false
-        },
-        {
-            image: '/images/checkIcons/uxDesign.png',
-            title: 'UXデザイン',
-            text: '',
-            weaken: false
-        },
-        {
-            image: '/images/checkIcons/.png',
-            title: 'グラフィックデザイン',
-            text: '',
-            weaken: false
-        },
-        {
-            image: '/images/checkIcons/printDesign.png',
-            title: 'プリントデザイン',
-            text: '',
-            weaken: false
-        },
-        {
-            image: '/images/checkIcons/.png',
-            title: 'イラストレーター',
-            text: '',
-            weaken: false
-        },
-        {
-            image: '/images/checkIcons/3dModel.png',
-            title: '3Dモデリング',
-            text: '',
-            weaken: false
-        },
-        {
-            image: '/images/checkIcons/motion.png',
-            title: 'モーションデザイン',
-            text: '',
-            weaken: false
-        },
-        {
-            image: '/images/checkIcons/branding.png',
-            title: 'ブランディング・ロゴ',
-            text: '',
-            weaken: false
-        },
-        {
-            image: '/images/checkIcons/movie.png',
-            title: '動画編集',
-            text: '',
-            weaken: false
-        },
-        {
-            image: '/images/checkIcons/dog.png',
-            title: 'その他',
-            text: '',
-            weaken: false
-        }],
-    }
+//     const props = {
+//         multiple: false,
+//         fourColumn: false,
+//         contents: [{
+//             image: '/images/checkIcons/uiDesign.png',
+//             title: 'UIデザイン',
+//             text: '',
+//             weaken: false
+//         },
+//         {
+//             image: '/images/checkIcons/uxDesign.png',
+//             title: 'UXデザイン',
+//             text: '',
+//             weaken: false
+//         },
+//         {
+//             image: '/images/checkIcons/.png',
+//             title: 'グラフィックデザイン',
+//             text: '',
+//             weaken: false
+//         },
+//         {
+//             image: '/images/checkIcons/printDesign.png',
+//             title: 'プリントデザイン',
+//             text: '',
+//             weaken: false
+//         },
+//         {
+//             image: '/images/checkIcons/.png',
+//             title: 'イラストレーター',
+//             text: '',
+//             weaken: false
+//         },
+//         {
+//             image: '/images/checkIcons/3dModel.png',
+//             title: '3Dモデリング',
+//             text: '',
+//             weaken: false
+//         },
+//         {
+//             image: '/images/checkIcons/motion.png',
+//             title: 'モーションデザイン',
+//             text: '',
+//             weaken: false
+//         },
+//         {
+//             image: '/images/checkIcons/branding.png',
+//             title: 'ブランディング・ロゴ',
+//             text: '',
+//             weaken: false
+//         },
+//         {
+//             image: '/images/checkIcons/movie.png',
+//             title: '動画編集',
+//             text: '',
+//             weaken: false
+//         },
+//         {
+//             image: '/images/checkIcons/dog.png',
+//             title: 'その他',
+//             text: '',
+//             weaken: false
+//         }],
+//     }
 
-    return (
-        <Select multiple={props.multiple} fourColumn={props.fourColumn} contents={props.contents} selectOptions={selectOptions.field} dispatch={dispatch} updateType={'SET_USER_FIELD'} />
-    )
-}
+//     return (
+//         <Select multiple={props.multiple} fourColumn={props.fourColumn} contents={props.contents} selectOptions={selectOptions.field} dispatch={dispatch} updateType={'SET_USER_FIELD'} />
+//     )
+// }
 
 export function Select(props: SelectProps) {
     const [state, setState] = useState('');
@@ -159,10 +159,6 @@ export function Select(props: SelectProps) {
         return (
             <>
                 <div className={style.halfWrap + ' ' + style.inner}>
-                    <div style={{ border: '1px solid #000' }}>
-                        結果
-                        <p>{props.selectOptions}</p>
-                    </div>
                     <div className={style.halfInner}>
                         {renderRadios(firstHalf)}
                     </div>
