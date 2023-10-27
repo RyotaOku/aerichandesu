@@ -378,8 +378,8 @@ export function getSkillData(field: string) {
     return data[key];
 }
 
-export function getQuestionData(){
-    return(
+export function getQuestionData() {
+    return (
         console.log
     )
 }
