@@ -7,7 +7,8 @@ import { CheckboxContent } from '@/types/carrierTypes'
 import { Button } from '@/components/common/Button'
 import { userCareerReducer, userCareerType, Action, questionType } from '@/lib/createStatusReducer'
 import { createStatusIndexReducer, IndexAction, globalState, } from '@/lib/createStatusIndexReducer'
-import { getFieldData, getSkillData } from '@/actions/createStatus/actioncreator'
+import { getFieldData, getQuestionData, getSkillData } from '@/actions/createStatus/actioncreator'
+import { AnswerOption, RadioQuestion } from '@/components/createStatus/MbtiRadio'
 
 type CareerProps = {
     dispatch: React.Dispatch<Action>,
@@ -84,67 +85,53 @@ function InputVision(props: InputVisionProps) {
     )
 }
 
-type RadioQuestionProps = {
-    question: questionType;
-    onChange: (answer: AnswerOption | null) => void;
-};
-
-enum AnswerOption {
-    StronglyAgree = 'StronglyAgree',
-    Agree = 'Agree',
-    SomewhatAgree = 'SomewhatAgree',
-    Neutral = 'Neutral',
-    SomewhatDisagree = 'SomewhatDisagree',
-    Disagree = 'Disagree',
-    StronglyDisagree = 'StronglyDisagree',
-}
-
-function RadioQuestion({ question, onChange }: RadioQuestionProps) {
-    const [selected, setSelected] = useState<number | null>(null);
-
-
-
-    return (
-        <div>
-            <p>{question.text}</p>
-            {Object.values(AnswerOption).map((answerOption, index) => (
-                <label key={index}>
-                    <input
-                        type="radio"
-                        name={question.text}
-                        value={answerOption}
-                        checked={question.answer === answerOption}
-                        onChange={(e) => onChange(e.target.value as AnswerOption)}
-                    />
-                    <span className="radio-circle"></span>
-                </label>
-            ))}
-        </div>
-    );
+type MbtiProps = {
+    field: string,
+    question: any[],
+    dispatch: React.Dispatch<Action>
 }
 
 
+function Mbti({ field, question, dispatch }: MbtiProps) {
 
-
-function Mbti() {
-    const [state, setState] = useState({})
-
-    const handleAnswerChange = (index: number, answer: AnswerOption | null) => {
-        const newQuestions = [...userCareer.question];
-        newQuestions[index].answer = answer;
-        setUserCareer(prev => ({ ...prev, question: newQuestions }));
+    function mapFieldToCategory(field: string): "designer" | "engineer" | "director" | "allRounder" {
+        switch (field) {
+            case "デザイナー":
+                return "designer";
+            case "エンジニア":
+                return "engineer";
+            case "ディレクター":
+                return "director";
+            case "オールラウンダー":
+                return "allRounder";
+            case "決めかねています":
+                return "allRounder";
+            default:
+                return "allRounder"; // デフォルト値
+        }
     }
+
+    useEffect(() => {
+        const category = mapFieldToCategory(field);
+        const data = getQuestionData(category);
+        dispatch({ type: 'ADD_QUESTION', payload: data })
+    }, [])
+
+    const [activeQuestionIndex, setActiveQuestionIndex] = useState<number>(0);
+
 
     return (
         <>
             <h2 className={style.stepTitle}>ありのままの自分で正直に回答してみましょう。</h2>
             <div className={style.questionWrap}>
-                <h3>デザインは、見た目よりも使いやすさ・機能性が重要だ</h3>
-                {userCareer.question.map((q, index) => (
+                {question.map((q, index) => (
                     <RadioQuestion
                         key={index}
                         question={q}
-                        onChange={(answer) => handleAnswerChange(index, answer)}
+                        dispatch={dispatch}
+                        index={index}
+                        isActive={activeQuestionIndex === index}
+                        setActiveQuestionIndex={setActiveQuestionIndex}
                     />
                 ))}
             </div>
@@ -192,21 +179,24 @@ export default function Main() {
     const [userCareer, userCareerDispatch] = useReducer(userCareerReducer, initialState)
 
     return (
-        <Frame>
+        <Frame className={step.index === 3 ? style.scrollable : ''}>
             <CreateStatusHeader step={step.index} maxStep={step.maxStep} dispatch={indexDispatch} />
-            <div style={{ border: '1px solid #000', position: 'fixed', top: 0, width: '80%', left: '10%' }}>
+            <div style={{ border: '1px solid #000', position: 'fixed', top: 0, width: '80%', left: '10%', fontSize: '0.6rem', background: '#ffffff88' }}>
                 【debug】結果:
                 <p>{userCareer.field}</p>
                 <p>{userCareer.vision}</p>
                 <p>{userCareer.skill}</p>
                 <p>{userCareer.tech}</p>
+                {userCareer.question.map((v: questionType, idx: number) => (
+                    <p key={idx}>{v.text}: {v.answer}</p>
+                ))}
             </div>
             {step.index === 1 && <CareerCategories dispatch={userCareerDispatch} selectedOptions={userCareer.field} />}
             {step.index === 2 && <InputVision vision={userCareer.vision} dispatch={userCareerDispatch} />}
-            {/* {step.index === 3 && <Mbti />} */}
-            {step.index === 3 && <SkillSelection dispatch={userCareerDispatch} selectedOptions={userCareer.skill} field={userCareer.field} />}
+            {step.index === 3 && <Mbti field={userCareer.field} dispatch={userCareerDispatch} question={userCareer.question} />}
+            {step.index === 4 && <SkillSelection dispatch={userCareerDispatch} selectedOptions={userCareer.skill} field={userCareer.field} />}
 
-            <Button text={'次へ'} disabled={userCareer.field === ''} className={style.button} onClick={() => {
+            <Button text={'次へ'} disabled={userCareer.field === ''} className={step.index === 3 ? style.button + ' ' + style.scrollableButton : style.button} onClick={() => {
                 if (step.index === step.maxStep) {
                     return
                 } else {

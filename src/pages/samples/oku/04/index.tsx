@@ -1,6 +1,5 @@
-import { useState, useEffect, useReducer, useRef } from 'react';
+import { useReducer, useRef } from 'react';
 import style from '@/styles/samples/oku/04.module.css'
-import { link } from 'fs';
 import { State, orderReducer, Action } from './reducer';
 
 // Headerコンポーネントの引数の型を定義
@@ -41,17 +40,21 @@ function Control({ state, dispatch }: ControlProps) {
         }
     }
 
+    // 文字列をシャッフルする関数
     const shuffleArray = () => {
         dispatch({ type: 'SHUFFLE' })
     }
 
     return (
         <div className={style.control}>
-            <h3>名前を入力</h3>
+            <h3>文字列を入力</h3>
             <div className={style.textWrap}>
                 <input type="text" ref={inputRef} className={''} value={state.text} onChange={(e) => { handleInput(e.target.value) }} />
                 <button className={style.button} onClick={addArray}>→</button>
             </div>
+            {/* 入力した文字列を確認するためのlistコンポーネント。list内で追加した文字列の削除が
+            できるようにdispatchを引数に渡しておく。文字列の一括削除機能はここでは必要なのでallRemoveはtrue(省略の記述方法で)。
+             */}
             <List list={state.textArray} dispatch={dispatch} allRemove />
             <button className={style.shuffle} onClick={shuffleArray}>らんだむ</button>
         </div>
@@ -83,18 +86,27 @@ function List({ list, dispatch, allRemove, order }: ListProps) {
 
     return (
         <>
+            {/* ここは正直もっとスマートな書き方あるけど、いったんこれで。
+        order(順番表示)がtrueの場合、ol要素で描画し、それぞれに連番を振る。 */}
             {order &&
                 <>
                     <ol className={style.namesList}>
+                        {/* 引数でやってきた配列をmapで描画 */}
                         {list.map((v, idx) => (
                             <li key={idx}>{v}
+                                {/* dispatchが引数として渡ってきている = 削除する考慮がある状態。
+                            その場合のみ、それぞれのlistには削除ボタンを表示 */}
                                 {dispatch && <button onClick={() => removeArray(idx)}>削除</button>}
                             </li>
                         ))}
                     </ol>
+                    {/* all　Removeがtrueのときのみ一括削除を実装
+                    (ではallRemoveがtrueのときはdispatch引数は必須になるべきだが...。気づかなかったことにしよう。)
+                    */}
                     {allRemove && <button className={style.reset} onClick={allRemoveArray}>一括削除</button>}
                 </>
             }
+            {/* orderがfalseなら、ul要素で単純に箇条。 */}
             {!order &&
                 <>
                     <ul className={style.namesList}>
@@ -115,9 +127,11 @@ type resultProps = {
     resultArray: string[]
 }
 
+// 結果を単純に描画するだけのコンポーネント
 function Result({ resultArray }: resultProps) {
     return (
         <div className={style.result}>
+            {/* 結果は順番表示する必要があるのでorderはtrue */}
             <List list={resultArray} order />
         </div>
     )

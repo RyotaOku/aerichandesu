@@ -17,6 +17,8 @@ export type Action =
     | { type: 'SET_USER_SKILL'; payload: string }
     | { type: 'SET_USER_TECH'; payload: string }
     | { type: 'SET_USER_VISION'; payload: string }
+    | { type: 'ADD_QUESTION'; payload: questionType[] }
+    | { type: 'UPDATE_ANSWER'; payload: { text: string; answer: questionType['answer'] } };
 
 export function userCareerReducer(userCareer: userCareerType, action: Action): userCareerType {
     switch (action.type) {
@@ -44,6 +46,20 @@ export function userCareerReducer(userCareer: userCareerType, action: Action): u
             return {
                 ...userCareer, vision: action.payload
             };
+        case 'ADD_QUESTION':
+            return {
+                ...userCareer,
+                // question: [...userCareer.question, ...action.payload]
+                question: action.payload
+            };
+        case 'UPDATE_ANSWER':
+            const updatedQuestions = userCareer.question.map(q => {
+                if (q.text === action.payload.text) {
+                    return { ...q, answer: action.payload.answer };
+                }
+                return q;
+            });
+            return { ...userCareer, question: updatedQuestions };
         default:
             return userCareer;
     }
