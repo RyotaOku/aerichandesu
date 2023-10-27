@@ -4,6 +4,7 @@ type ButtonProps = {
     text: string
     className?: string
     onClick?: () => void
+    disabled?: boolean
 }
 
 export function Button(props: ButtonProps) {
@@ -16,7 +17,7 @@ export function Button(props: ButtonProps) {
     }
     return (
         <>
-            <button className={style.button + ' ' + props.className} onClick={() => handleClick()}>{props.text}</button>
+            <button disabled={props.disabled} className={style.button + ' ' + props.className} onClick={() => handleClick()}>{props.text}</button>
         </>
     )
 }

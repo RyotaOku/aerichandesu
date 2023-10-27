@@ -4,6 +4,10 @@
     margin: 3rem 0;
 }
 
+.stepTitle.fieldTitle {
+    margin-top: 5rem;
+}
+
 .button {
     display: block;
     position: absolute;
@@ -19,14 +23,62 @@
     width: 60%;
     height: 3.2rem;
     border-radius: 6px;
-    margin: 0 auto;
+    margin: 0 auto 2rem;
     padding: 0 0 0 1rem;
+    font-size: 1.2rem;
 }
 
 .visionInput::placeholder {
     color: #989898;
+    font-size: 1rem;
 }
 
 .visionText {
     text-align: center;
+    font-weight: bold;
+}
+
+.visionsWrap {
+    display: flex;
+    margin: 3rem auto;
+    justify-content: space-between;
+    gap: 4rem;
+    align-items: center;
+    height: 45%;
+    width: 78%;
+    min-width: 70rem;
+}
+
+.visionsWrap .vision {
+    flex-grow: 1;
+    width: 30%;
+    border-radius: 50%;
+    border: 1px solid #bbb;
+    aspect-ratio: 1/1;
+    padding: 3rem 0;
+}
+
+.visionsWrap .vision p {
+    width: 60%;
+    height: 5rem;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    font-weight: bold;
+    margin: 0 auto;
+}
+
+.visionsWrap .vision picture {
+    display: block;
+    width: 60%;
+    height: 65%;
+    margin: 1rem auto 0;
+}
+
+.visionsWrap .vision picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    -webkit-user-drag: none;
 }

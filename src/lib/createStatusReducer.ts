@@ -3,12 +3,20 @@ export type userCareerType = {
     vision: string;
     skill: string[];
     tech: string[];
+    question: questionType[]
+}
+
+export type questionType = {
+    text: string;
+    category: string
+    answer: null | 'StronglyAgree' | 'Agree' | 'SomewhatAgree' | 'Neutral' | 'SomewhatDisagree' | 'Disagree' | 'StronglyDisagree';
 }
 
 export type Action =
     | { type: 'SET_USER_FIELD'; payload: string; }
     | { type: 'SET_USER_SKILL'; payload: string }
     | { type: 'SET_USER_TECH'; payload: string }
+    | { type: 'SET_USER_VISION'; payload: string }
 
 export function userCareerReducer(userCareer: userCareerType, action: Action): userCareerType {
     switch (action.type) {
@@ -31,6 +39,10 @@ export function userCareerReducer(userCareer: userCareerType, action: Action): u
                 tech: isTechExists ?
                     userCareer.tech.filter(tech => tech !== action.payload) :
                     [...userCareer.tech, action.payload]
+            };
+        case 'SET_USER_VISION':
+            return {
+                ...userCareer, vision: action.payload
             };
         default:
             return userCareer;

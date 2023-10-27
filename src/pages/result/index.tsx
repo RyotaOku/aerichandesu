@@ -89,36 +89,9 @@ const result = {
             title: '論理性と創造性',
             image: '',
             leftText: '分析思考',
-            leftPercent: '48%',
+            leftPercent: '100%',
             rightText: '創造性',
-            rightPercent: '52%',
-            text: '基本的にどのようなタスクでもこなし、枠にハマった考え方をしない優秀なオールラウンダーです。それぞれの分野にも得意分野があります。'
-        },
-        {
-            title: '論理性と創造性',
-            image: '',
-            leftText: '分析思考',
-            leftPercent: '48%',
-            rightText: '創造性',
-            rightPercent: '52%',
-            text: '基本的にどのようなタスクでもこなし、枠にハマった考え方をしない優秀なオールラウンダーです。それぞれの分野にも得意分野があります。'
-        },
-        {
-            title: '論理性と創造性',
-            image: '',
-            leftText: '分析思考',
-            leftPercent: '48%',
-            rightText: '創造性',
-            rightPercent: '52%',
-            text: '基本的にどのようなタスクでもこなし、枠にハマった考え方をしない優秀なオールラウンダーです。それぞれの分野にも得意分野があります。'
-        },
-        {
-            title: '論理性と創造性',
-            image: '',
-            leftText: '分析思考',
-            leftPercent: '48%',
-            rightText: '創造性',
-            rightPercent: '52%',
+            rightPercent: '0%',
             text: '基本的にどのようなタスクでもこなし、枠にハマった考え方をしない優秀なオールラウンダーです。それぞれの分野にも得意分野があります。'
         }
     ]

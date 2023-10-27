@@ -9,3 +9,12 @@
     font-weight: bold;
     width: fit-content;
 }
+
+.button:not(:disabled):hover {
+    background: #00574f;
+}
+
+.button:disabled {
+    opacity: 0.6;
+    cursor: default;
+}
