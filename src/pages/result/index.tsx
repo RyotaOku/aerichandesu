@@ -38,7 +38,8 @@ function OtherResult({ status }: OtherResultProps) {
                 <div className={style.div3}>
                     <p className={style.statusText}>
                         {status.text}
-                    </p></div>
+                    </p>
+                </div>
             </div>
         </>
     )
