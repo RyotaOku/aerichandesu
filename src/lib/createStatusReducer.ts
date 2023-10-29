@@ -10,6 +10,9 @@ export type questionType = {
     text: string;
     category: string
     answer: null | 'StronglyAgree' | 'Agree' | 'SomewhatAgree' | 'Neutral' | 'SomewhatDisagree' | 'Disagree' | 'StronglyDisagree';
+    resultText: string;
+    categoryLeftPercent: string;
+    categoryRightPercent: string;
 }
 
 export type Action =
