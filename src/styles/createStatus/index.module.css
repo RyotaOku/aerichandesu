@@ -1,6 +1,13 @@
 .scrollable {
-    height: auto;
-    border: 1px solid #000;
+    height: auto !important;
+    padding-top: 5rem;
+}
+
+.scrollableHeader {
+    position: fixed;
+    top: 0;
+    background: #fff;
+    z-index: 1;
 }
 
 .stepTitle {
@@ -21,7 +28,8 @@
     right: 0;
     margin: 0 auto;
 }
-.button.scrollableButton{
+
+.button.scrollableButton {
     position: relative;
 }
 
@@ -89,4 +97,12 @@
     height: 100%;
     object-fit: contain;
     -webkit-user-drag: none;
+}
+
+.questionWrap {
+    padding-bottom: 8rem;
+}
+
+.questionWrap>div:last-child {
+    border: none;
 }

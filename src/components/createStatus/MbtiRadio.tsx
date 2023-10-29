@@ -25,6 +25,9 @@ export function RadioQuestion({ question, dispatch, index, isActive, setActiveQu
     const questionRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
+        if (index === 0) {
+            return
+        }
         if (isActive && questionRef.current) {
             // 現在のエレメントの位置を取得
             const topPosition = questionRef.current.getBoundingClientRect().top + window.scrollY;
@@ -54,7 +57,7 @@ export function RadioQuestion({ question, dispatch, index, isActive, setActiveQu
                 <p className={style.agree}>同意する</p>
                 <div className={style.buttons}>
                     {Object.values(AnswerOption).map((answerOption, index) => (
-                        <label key={index}>
+                        <label key={index} className={style.radio}>
                             <input
                                 type="radio"
                                 name={question.text}

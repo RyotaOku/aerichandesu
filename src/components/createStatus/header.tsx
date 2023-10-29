@@ -4,14 +4,15 @@ import { IndexAction } from '@/lib/createStatusIndexReducer';
 type headerProps = {
     step: number
     maxStep: number,
-    dispatch: React.Dispatch<IndexAction>
+    dispatch: React.Dispatch<IndexAction>,
+    className?: string
 }
 
 export function CreateStatusHeader(props: headerProps) {
     const progressWidthPercentage = (props.step / props.maxStep) * 100;
 
     return (
-        <div className={style.header}>
+        <div className={style.header + ' ' + props.className}>
             <div className={style.headerContents}>
                 <button className={style.prev} onClick={() => {
                     props.dispatch({ type: 'PREV_INDEX' })

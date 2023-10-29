@@ -178,10 +178,14 @@ export default function Main() {
     }
     const [userCareer, userCareerDispatch] = useReducer(userCareerReducer, initialState)
 
+    const isFieldEmpty = step.index === 1 && userCareer.field === '';
+    const hasUnansweredQuestions = step.index === 3 && userCareer.question.some(q => q.answer === null);
+    const isButtonDisabled = isFieldEmpty || hasUnansweredQuestions;
+
     return (
         <Frame className={step.index === 3 ? style.scrollable : ''}>
-            <CreateStatusHeader step={step.index} maxStep={step.maxStep} dispatch={indexDispatch} />
-            <div style={{ border: '1px solid #000', position: 'fixed', top: 0, width: '80%', left: '10%', fontSize: '0.6rem', background: '#ffffff88' }}>
+            <CreateStatusHeader className={step.index === 3 ? style.scrollableHeader : ''} step={step.index} maxStep={step.maxStep} dispatch={indexDispatch} />
+            {/* <div style={{ border: '1px solid #000', position: 'fixed', top: 0, width: '80%', left: '10%', fontSize: '0.6rem', background: '#ffffff88' }}>
                 【debug】結果:
                 <p>{userCareer.field}</p>
                 <p>{userCareer.vision}</p>
@@ -190,19 +194,21 @@ export default function Main() {
                 {userCareer.question.map((v: questionType, idx: number) => (
                     <p key={idx}>{v.text}: {v.answer}</p>
                 ))}
-            </div>
+            </div> */}
             {step.index === 1 && <CareerCategories dispatch={userCareerDispatch} selectedOptions={userCareer.field} />}
             {step.index === 2 && <InputVision vision={userCareer.vision} dispatch={userCareerDispatch} />}
             {step.index === 3 && <Mbti field={userCareer.field} dispatch={userCareerDispatch} question={userCareer.question} />}
             {step.index === 4 && <SkillSelection dispatch={userCareerDispatch} selectedOptions={userCareer.skill} field={userCareer.field} />}
 
-            <Button text={'次へ'} disabled={userCareer.field === ''} className={step.index === 3 ? style.button + ' ' + style.scrollableButton : style.button} onClick={() => {
-                if (step.index === step.maxStep) {
-                    return
-                } else {
-                    indexDispatch({ type: 'NEXT_INDEX' })
-                }
-            }} />
+            <Button text={'次へ'}
+                disabled={isButtonDisabled}
+                className={step.index === 3 ? style.button + ' ' + style.scrollableButton : style.button} onClick={() => {
+                    if (step.index === step.maxStep) {
+                        return
+                    } else {
+                        indexDispatch({ type: 'NEXT_INDEX' })
+                    }
+                }} />
         </Frame>
     )
 }
