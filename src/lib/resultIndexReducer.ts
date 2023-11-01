@@ -1,13 +1,13 @@
-export type Action =
+export type Actions =
     | { type: 'NEXT_INDEX'; }
     | { type: 'PREV_INDEX'; }
     | { type: 'SET_INDEX'; payload: number; }
 
-export type globalState = {
+export type globalStateType = {
     index: number
 }
 
-export function resultIndexReducer(state: globalState, action: Action) {
+export function resultIndexReducer(state: globalStateType, action: Actions) {
     switch (action.type) {
         case 'NEXT_INDEX':
             return { ...state, index: state.index + 1 };

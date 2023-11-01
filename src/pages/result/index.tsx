@@ -4,7 +4,7 @@ import Footer from '@/components/result/Footer'
 import Status from '@/components/result/StatusData'
 import { Frame } from '@/components/common/Frame'
 import { statusArray, result } from '@/types/resultTypes'
-import { resultIndexReducer, globalState, Action } from '@/lib/resultIndexReducer'
+import { resultIndexReducer, globalStateType, Actions } from '@/lib/resultIndexReducer'
 
 type Props = {
     text: string
@@ -99,7 +99,7 @@ const result = {
 }
 
 export default function Result(props: Props) {
-    const initialState: globalState = {
+    const initialState: globalStateType = {
         index: 0
     }
 

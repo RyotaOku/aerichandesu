@@ -11,6 +11,7 @@
   "dependencies": {
     "@egjs/react-flicking": "^4.11.0",
     "@next/font": "^13.1.6",
+    "axios": "^1.6.0",
     "big.js": "^6.2.1",
     "csv": "^6.2.12",
     "dayjs": "^1.11.7",

@@ -10,6 +10,12 @@ import { createStatusIndexReducer, IndexAction, globalState, } from '@/lib/creat
 import { getFieldData, getQuestionData, getSkillData } from '@/actions/createStatus/actioncreator'
 import { AnswerOption, RadioQuestion } from '@/components/createStatus/MbtiRadio'
 
+import styles from '@/styles/result/result.module.css'
+import Footer from '@/components/result/Footer'
+import Status from '@/components/result/StatusData'
+import { statusArray, result } from '@/types/resultTypes'
+import { resultIndexReducer, globalStateType, Actions } from '@/lib/resultIndexReducer'
+
 type CareerProps = {
     dispatch: React.Dispatch<Action>,
     selectedOptions: string | string[]
@@ -164,8 +170,8 @@ function SkillSelection(props: SkillProps) {
 
 export default function Main() {
     const initialIndex: globalState = {
-        index: 1,
-        maxStep: 6
+        index: 0,
+        maxStep: 4
     }
     const [step, indexDispatch] = useReducer(createStatusIndexReducer, initialIndex)
 
@@ -178,37 +184,129 @@ export default function Main() {
     }
     const [userCareer, userCareerDispatch] = useReducer(userCareerReducer, initialState)
 
-    const isFieldEmpty = step.index === 1 && userCareer.field === '';
-    const hasUnansweredQuestions = step.index === 3 && userCareer.question.some(q => q.answer === null);
+    useEffect(() => {
+        console.log(userCareer.question);
+    }, [userCareer.question])
+
+    const isFieldEmpty = step.index === 0 && userCareer.field === '';
+    const hasUnansweredQuestions = step.index === 2 && userCareer.question.some(q => q.answer === null);
     const isButtonDisabled = isFieldEmpty || hasUnansweredQuestions;
 
     return (
-        <Frame className={step.index === 3 ? style.scrollable : ''}>
-            <CreateStatusHeader className={step.index === 3 ? style.scrollableHeader : ''} step={step.index} maxStep={step.maxStep} dispatch={indexDispatch} />
-            {/* <div style={{ border: '1px solid #000', position: 'fixed', top: 0, width: '80%', left: '10%', fontSize: '0.6rem', background: '#ffffff88' }}>
-                【debug】結果:
-                <p>{userCareer.field}</p>
-                <p>{userCareer.vision}</p>
-                <p>{userCareer.skill}</p>
-                <p>{userCareer.tech}</p>
-                {userCareer.question.map((v: questionType, idx: number) => (
-                    <p key={idx}>{v.text}: {v.answer}</p>
-                ))}
-            </div> */}
-            {step.index === 1 && <CareerCategories dispatch={userCareerDispatch} selectedOptions={userCareer.field} />}
-            {step.index === 2 && <InputVision vision={userCareer.vision} dispatch={userCareerDispatch} />}
-            {step.index === 3 && <Mbti field={userCareer.field} dispatch={userCareerDispatch} question={userCareer.question} />}
-            {step.index === 4 && <SkillSelection dispatch={userCareerDispatch} selectedOptions={userCareer.skill} field={userCareer.field} />}
+        <Frame className={step.index === 2 ? style.scrollable : ''}>
+            {step.index !== 4 && <CreateStatusHeader className={step.index === 2 ? style.scrollableHeader : ''} step={step.index} maxStep={step.maxStep} dispatch={indexDispatch} />}
+            {step.index === 0 && <CareerCategories dispatch={userCareerDispatch} selectedOptions={userCareer.field} />}
+            {step.index === 1 && <InputVision vision={userCareer.vision} dispatch={userCareerDispatch} />}
+            {step.index === 2 && <Mbti field={userCareer.field} dispatch={userCareerDispatch} question={userCareer.question} />}
+            {step.index === 3 && <SkillSelection dispatch={userCareerDispatch} selectedOptions={userCareer.skill} field={userCareer.field} />}
+            {step.index === 4 && <Result userCareer={userCareer} />}
 
-            <Button text={'次へ'}
+            {/* {step.index !== 4 && <Button text={'次へ'}
                 disabled={isButtonDisabled}
-                className={step.index === 3 ? style.button + ' ' + style.scrollableButton : style.button} onClick={() => {
+                className={step.index === 2 ? style.button + ' ' + style.scrollableButton : style.button} onClick={() => {
+                    if (step.index === step.maxStep) {
+                        return
+                    } else {
+                        indexDispatch({ type: 'NEXT_INDEX' })
+                    }
+                }} />} */}
+            <Button text={'次へ'}
+                className={step.index === 2 ? style.button + ' ' + style.scrollableButton : style.button} onClick={() => {
                     if (step.index === step.maxStep) {
                         return
                     } else {
                         indexDispatch({ type: 'NEXT_INDEX' })
                     }
                 }} />
+        </Frame>
+    )
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+type FirstResultProps = {
+    result: result
+}
+
+type OtherResultProps = {
+    status: questionType
+}
+
+
+
+type resultProps = {
+    userCareer: userCareerType
+}
+
+function FirstResult({ result }: FirstResultProps) {
+    return (
+        <>
+            <h2 className={styles.resultTitle}><span>あなたは...</span>{result.title}</h2>
+            <picture className={styles.imageWrap}><img src="" alt="" /></picture>
+            <p className={styles.text}>{result.text}</p>
+        </>
+    )
+}
+
+function OtherResult({ status }: OtherResultProps) {
+    return (
+        <>
+            <h2 className={styles.subTitle}>{status.category}</h2>
+            <div className={styles.parent}>
+                <picture className={styles.subResultImage}><img src="" alt="" /></picture>
+                <div className={styles.div2}><Status status={status} /></div>
+                <div className={styles.div3}>
+                    <p className={styles.statusText}>
+                        {status.resultText.neutral}
+                    </p>
+                </div>
+            </div>
+        </>
+    )
+}
+
+export function Result({ userCareer }: resultProps) {
+    const initialState: globalStateType = {
+        index: 0
+    }
+
+    const [activeIndex, dispatch] = useReducer(resultIndexReducer, initialState);
+
+    const handleClick = (action: 'NEXT_INDEX' | 'PREV_INDEX' | 'SET_INDEX', index?: number) => {
+        switch (action) {
+            case 'NEXT_INDEX':
+                dispatch({ type: 'NEXT_INDEX' });
+                break;
+            case 'PREV_INDEX':
+                dispatch({ type: 'PREV_INDEX' });
+                break;
+            case 'SET_INDEX':
+                dispatch({ type: 'SET_INDEX', payload: index ?? 0 });
+                break;
+        };
+    }
+
+    return (
+        <Frame>
+            <div className={styles.background}>
+                <div className={styles.wrap}>
+                    {/* {activeIndex.index === 0 && <FirstResult />} */}
+                    {activeIndex.index !== 0 && <OtherResult status={userCareer.question[activeIndex.index]} />}
+                    <Footer activeIndex={activeIndex.index} onClick={handleClick} />
+                </div>
+            </div>
         </Frame>
     )
 }
