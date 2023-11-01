@@ -10,14 +10,15 @@ type Output = {
     error?: string
 }
 
-const API_URL = 'https://api.openai.com/v1/';
-const MODEL = 'gpt-4-32k';
-const API_KEY = process.env.REACT_APP_GPT_API_KEY; // 環境変数からAPIキーを読み込む
+const MODEL = 'gpt-3.5-turbo-0613';  // モデル名を修正
+const API_URL = 'https://api.openai.com/v1/engines/';
+
+const API_KEY = process.env.GPT_API_KEY; // 環境変数からAPIキーを読み込む
 
 async function getGptResponse(message: string) {
+
     try {
-        const response = await axios.post(`${API_URL}chat/completions`, {
-            model: MODEL,
+        const response = await axios.post(`${API_URL}${MODEL}/completions`, {
             messages: [
                 {
                     'role': 'user',
@@ -30,6 +31,7 @@ async function getGptResponse(message: string) {
                 'Authorization': `Bearer ${API_KEY}`
             }
         });
+
         return response.data.choices[0].message.content;
     } catch (error) {
         console.error(error);
@@ -55,8 +57,9 @@ export default async function handler(
         } else {
             res.status(500).json({ error: 'Internal Server Error' })
         }
-    } catch (error) {
-        console.error(error)
-        res.status(500).json({ error: 'Internal Server Error' })
+    } catch (error: any) {
+        console.error(error);
+        res.status(500).json({ error: `Internal Server Error: ${error.message}` })
     }
+
 }
