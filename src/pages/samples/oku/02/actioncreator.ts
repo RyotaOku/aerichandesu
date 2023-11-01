@@ -6,7 +6,7 @@ export async function getUserName(dispatch: React.Dispatch<Action>, pass: string
     dispatch({ type: 'USERNAME_REQUEST' });
 
     try {
-        const res = await fetch('/api/api', {
+        const res = await fetch('/api/samples/api', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

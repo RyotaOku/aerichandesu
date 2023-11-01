@@ -2,3 +2,4 @@
 # logsとserverを無視
 /logs/
 /server/
+.env

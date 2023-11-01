@@ -1,41 +1,44 @@
 import { useState } from 'react'
-import axios from 'axios';
-const API_URL = 'https://api.openai.com/v1/';
-const MODEL = 'gpt-4-32k';
-const API_KEY = 'APIキーをここに貼り付け';
 
-async function message(message: string) {
+export async function fetchGptResponse(message: string) {
     try {
-        const response = await axios.post(`${API_URL}chat/completions`, {
-            // モデル ID の指定
-            model: MODEL,
-            // 質問内容
-            messages: [
-                {
-                    'role': 'user',
-                    'content': message,
-                }
-            ],
-        }, {
-            // 送信する HTTP ヘッダー(認証情報)
+        const res = await fetch('/api/gptApi', {
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${API_KEY}`
-            }
+                'Pragma': 'no-cache',
+                'Cache-Control': 'no-cache',
+            },
+            body: JSON.stringify({ message }),
         });
-        // 回答の取得
-        return response.data.choices[0].message.content;
+
+        if (!res.ok) {
+            throw new Error('Server error');
+        }
+
+        const result = await res.json();
+        // ここで成功の処理を行う、例えばstateに保存する等
+        return result;
     } catch (error) {
+        // ここでエラーハンドリングを行う
         console.error(error);
         return null;
     }
 }
 
 export default function Main() {
+    const [gptResponse, setGptResponse] = useState(null);
+
+    const fetchData = async () => {
+        const result = await fetchGptResponse("Hello");
+        setGptResponse(result);
+    }
+
     return (
         <>
             <h1>ChatGPT APIでの通信</h1>
-            <div></div>
+            <button onClick={fetchData}>Fetch Data</button>
+            <div>{gptResponse ? gptResponse : "No Data"}</div>
         </>
     )
 }
