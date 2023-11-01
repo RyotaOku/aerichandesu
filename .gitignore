@@ -1,3 +1,4 @@
 /.DS_Store
-server/
-logs/
+# logsとserverを無視
+/logs/
+/server/
