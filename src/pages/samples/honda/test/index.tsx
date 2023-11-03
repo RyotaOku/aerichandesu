@@ -3,8 +3,8 @@ import { useState } from 'react'
 
 function Test01() {
     // 全てに共通: 関数や機能の実装はそれぞれのコンポーネント内で行う。↓
-
-
+    const [mail, setMail] = useState("")
+    const [pass, setPass] = useState("")
 
     return (
         <div>
@@ -16,7 +16,6 @@ function Test01() {
             </div>
 
             <input type="text" id={'mail'} placeholder="メールアドレス" />
-
             {/* 本当はパスワード欄なら type="pass"であるべきだが、今回は値の確認したいのでこのままで良い。 */}
             <input type="text" id={'pass'} placeholder="パスワード" />
 
