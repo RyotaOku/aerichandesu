@@ -37,7 +37,8 @@ function Test01() {
 }
 
 function Test02() {
-
+    const [todoInput, setTodoInput] = useState("")
+    const [todoArray, setTodoArray] = useState<string[]>([])
 
 
     return (
@@ -53,10 +54,19 @@ function Test02() {
                 </ul>
             </div>
 
-            <input type="text" id={'mail'} placeholder="todoを入力" />
-            <button>追加！</button>
+            <input type="text" id={'todoInput'} value={todoInput} onChange={(e) => {
+                setTodoInput(e.target.value)
+            }} placeholder="todoを入力" />
+            <button onClick={() => {
+                setTodoArray(prev => [...prev, todoInput])
+            }}>追加！</button>
 
             <p>todoリスト↓</p>
+            <ul>
+                {todoArray.map((v, idx) => (
+                    <li key={idx}>{v}</li>
+                ))}
+            </ul>
         </div>
     )
 }
