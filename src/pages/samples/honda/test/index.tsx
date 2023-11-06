@@ -3,6 +3,8 @@ import { useState } from 'react'
 
 function Test01() {
     // 全てに共通: 関数や機能の実装はそれぞれのコンポーネント内で行う。↓
+    const [mailInput, setMailInput] = useState("")
+    const [passInput, setPassInput] = useState("")
     const [mail, setMail] = useState("")
     const [pass, setPass] = useState("")
 
@@ -15,14 +17,21 @@ function Test01() {
                 </ul>
             </div>
 
-            <input type="text" id={'mail'} placeholder="メールアドレス" />
+            <input type="text" id={'mail'} value={mailInput} onChange={(e) => {
+                setMailInput(e.target.value)
+            }} placeholder="メールアドレス" />
             {/* 本当はパスワード欄なら type="pass"であるべきだが、今回は値の確認したいのでこのままで良い。 */}
-            <input type="text" id={'pass'} placeholder="パスワード" />
+            <input type="text" id={'pass'} value={passInput} onChange={(e) => {
+                setPassInput(e.target.value)
+            }} placeholder="パスワード" />
 
-            <button>結果出力</button>
+            <button onClick={() => {
+                setMail(mailInput)
+                setPass(passInput)
+            }}>結果出力</button>
 
-            <p>メールアドレス:{ }</p>
-            <p>パスワード:{ }</p>
+            <p>メールアドレス:{mail}</p>
+            <p>パスワード:{pass}</p>
         </div>
     )
 }
