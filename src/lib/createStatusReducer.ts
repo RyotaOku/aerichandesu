@@ -23,6 +23,10 @@ export type Action =
     | { type: 'ADD_QUESTION'; payload: questionType[] }
     | { type: 'UPDATE_ANSWER'; payload: { text: string; answer: questionType['answer'] } };
 
+function getRandomPercent(min: number, max: number): string {
+    return `${Math.floor(Math.random() * (max - min + 1) + min)}%`;
+}
+
 export function userCareerReducer(userCareer: userCareerType, action: Action): userCareerType {
     switch (action.type) {
         case 'SET_USER_FIELD':
@@ -58,7 +62,46 @@ export function userCareerReducer(userCareer: userCareerType, action: Action): u
         case 'UPDATE_ANSWER':
             const updatedQuestions = userCareer.question.map(q => {
                 if (q.text === action.payload.text) {
-                    return { ...q, answer: action.payload.answer };
+                    let categoryLeftPercent = "";
+                    let categoryRightPercent = "";
+
+                    switch (action.payload.answer) {
+                        case 'StronglyAgree':
+                            categoryLeftPercent = getRandomPercent(70, 80);
+                            break;
+                        case 'Agree':
+                            categoryLeftPercent = getRandomPercent(60, 70);
+                            break;
+                        case 'SomewhatAgree':
+                            categoryLeftPercent = getRandomPercent(51, 60);
+                            break;
+                        case 'Neutral':
+                            categoryLeftPercent = getRandomPercent(45, 55);
+                            break;
+                        case 'SomewhatDisagree':
+                            categoryRightPercent = getRandomPercent(51, 60);
+                            break;
+                        case 'Disagree':
+                            categoryRightPercent = getRandomPercent(60, 70);
+                            break;
+                        case 'StronglyDisagree':
+                            categoryRightPercent = getRandomPercent(70, 80);
+                            break;
+                        default:
+                            categoryLeftPercent = "50%";
+                            categoryRightPercent = "50%";
+                            break;
+                    }
+
+                    categoryRightPercent = categoryRightPercent || `${100 - parseInt(categoryLeftPercent)}%`;
+                    categoryLeftPercent = categoryLeftPercent || `${100 - parseInt(categoryRightPercent)}%`;
+
+                    return {
+                        ...q,
+                        answer: action.payload.answer,
+                        categoryLeftPercent,
+                        categoryRightPercent
+                    };
                 }
                 return q;
             });

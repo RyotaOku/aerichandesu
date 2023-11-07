@@ -27,9 +27,9 @@ export default function Status({ status }: Props) {
     // この関数はアクティブなクラス名を返します。
     function getActiveClass(isLeft: boolean) {
         if (isLeft) {
-            return parseInt(status.categoryLeftPercent) <= parseInt(status.categoryRightPercent) ? style.active : '';
-        } else {
             return parseInt(status.categoryLeftPercent) > parseInt(status.categoryRightPercent) ? style.active : '';
+        } else {
+            return parseInt(status.categoryLeftPercent) <= parseInt(status.categoryRightPercent) ? style.active : '';
         }
     }
 

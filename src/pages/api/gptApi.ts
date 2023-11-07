@@ -16,7 +16,6 @@ const API_URL = 'https://api.openai.com/v1/engines/';
 const API_KEY = process.env.GPT_API_KEY; // 環境変数からAPIキーを読み込む
 
 async function getGptResponse(message: string) {
-
     try {
         const response = await axios.post(`${API_URL}${MODEL}/completions`, {
             messages: [

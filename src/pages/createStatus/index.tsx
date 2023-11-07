@@ -184,10 +184,6 @@ export default function Main() {
     }
     const [userCareer, userCareerDispatch] = useReducer(userCareerReducer, initialState)
 
-    useEffect(() => {
-        console.log(userCareer.question);
-    }, [userCareer.question])
-
     const isFieldEmpty = step.index === 0 && userCareer.field === '';
     const hasUnansweredQuestions = step.index === 2 && userCareer.question.some(q => q.answer === null);
     const isButtonDisabled = isFieldEmpty || hasUnansweredQuestions;
@@ -269,7 +265,11 @@ function OtherResult({ status }: OtherResultProps) {
                 <div className={styles.div2}><Status status={status} /></div>
                 <div className={styles.div3}>
                     <p className={styles.statusText}>
-                        {status.resultText.neutral}
+                        {
+                            parseInt(status.categoryLeftPercent) >= 55 ? status.resultText.left :
+                                parseInt(status.categoryRightPercent) >= 55 ? status.resultText.right :
+                                    status.resultText.neutral
+                        }
                     </p>
                 </div>
             </div>
