@@ -1,5 +1,8 @@
 import style from '@/styles/samples/common.module.css'
-import { useState } from 'react'
+import modal from '@/styles/samples/honda/modal.module.css'
+import { useReducer, useState } from 'react'
+import { ActionType, reducer, State } from './reducer'
+import { log } from 'console'
 
 function Test01() {
     // 全てに共通: 関数や機能の実装はそれぞれのコンポーネント内で行う。↓
@@ -54,9 +57,14 @@ function Test02() {
                 </ul>
             </div>
 
-            <input type="text" id={'todoInput'} value={todoInput} onChange={(e) => {
-                setTodoInput(e.target.value)
-            }} placeholder="todoを入力" />
+            <input
+                type="text"
+                id={'todoInput'}
+                value={todoInput}
+                onChange={(e) => {
+                    setTodoInput(e.target.value)
+                }} placeholder="todoを入力" />
+
             <button onClick={() => {
                 setTodoArray(prev => [...prev, todoInput])
             }}>追加！</button>
@@ -72,9 +80,14 @@ function Test02() {
 }
 
 function Test03() {
-    // stateの名前・型も考えよう。このままでは良くないな。
-    const [state, setState] = useState(0)
 
+    const [state, dispatch] = useReducer(reducer, { count: 0 })
+
+    // const initialState: State = {
+    //     count: ''
+    // }
+
+    // stateの名前・型も考えよう。このままでは良くないな。
 
     return (
         <div>
@@ -87,17 +100,31 @@ function Test03() {
                 </ul>
             </div>
 
-            <p>現在の値は{state}です。</p>
-            <button>+1する</button>
-            <button>-1する</button>
-            <button>reset</button>
+            <p>現在の値は{state.count}です。</p>
+            <button onClick={() => dispatch({ type: ActionType.PLUS })}>+1する</button>
+            <button onClick={() => dispatch({ type: ActionType.MINUS })}>-1する</button>
+            <button onClick={() => dispatch({ type: ActionType.SET, payload: { count: 0 } })}>reset</button>
         </div>
     )
 }
 
 function Test04() {
     // modal要素はコンポーネント化しても良いし、しなくてもよい。
-
+    const [modalFlg, setModalFlg] = useState<boolean>(false)
+    type ModalProps = {
+        contents: string;
+    }
+    function Modal({ contents }: ModalProps) {
+        if (!modalFlg) return null;
+        else return (
+            <div className={modal.overlay} onClick={() => {
+                setModalFlg(false)
+            }}><div className={modal.modal} onClick={(e) => {
+                e.stopPropagation();
+            }
+            }>{contents}</div></div>
+        )
+    }
 
 
     return (
@@ -110,7 +137,10 @@ function Test04() {
                     <li>描画するmodalや、その他のスタイルは自分で実装する</li>
                 </ul>
             </div>
-            <button>modal表示</button>
+            <button onClick={() => {
+                setModalFlg(true)
+            }}>modal表示</button>
+            <Modal contents='てすとですてすとてすとですてすとてすとですてすと' />
         </div>
     )
 }
