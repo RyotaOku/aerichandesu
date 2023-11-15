@@ -237,10 +237,10 @@ type FirstResultProps = {
 }
 
 type OtherResultProps = {
-    status: questionType
+    status: questionType,
+    imageIndex: number,
+    titleIndex: number
 }
-
-
 
 type resultProps = {
     userCareer: userCareerType
@@ -256,12 +256,24 @@ function FirstResult({ result }: FirstResultProps) {
     )
 }
 
-function OtherResult({ status }: OtherResultProps) {
+function OtherResult({ status, imageIndex, titleIndex }: OtherResultProps) {
+
+    const titles = ["内なる探求", "あなたの隠された強み", "心の旅路", "未知なる自己", "発見の瞬間", "心の風景", "あなたの内面の世界", "深層心理の探検", "感情の海", "自己発見の旅", "思考のパターン", "感覚の響き", "直感の光", "夢想と現実", "精神の軌跡"];
+    const selectedTitle = titles[titleIndex];
+
+    const images = ["anything.png", "balance.png", "brand.png", "build.png", "code.png", "communication.png", "creative.png", "creator.png", "data.png", "elect.png", "harmony.png", "infinity.png", "jack.png", "leader.png", "road.png", "trend.png", "undraw_fixing_bugs_w7gi.png", "ux.png", "vision.png", "visual.png"]
+    // 選択された画像のファイル名
+    const selectedImage = images[imageIndex];
+
+
     return (
         <>
-            <h2 className={styles.subTitle}>{status.category}</h2>
+            <h2 className={styles.subTitle}>
+                {/* {status.category} */}
+                {selectedTitle}
+            </h2>
             <div className={styles.parent}>
-                <picture className={styles.subResultImage}><img src="" alt="" /></picture>
+                <picture className={styles.subResultImage}><img src={`images/resultImages/${selectedImage}`} alt="" /></picture>
                 <div className={styles.div2}><Status status={status} /></div>
                 <div className={styles.div3}>
                     <p className={styles.statusText}>
@@ -282,7 +294,16 @@ export function Result({ userCareer }: resultProps) {
         index: 0
     }
 
+    const result = {
+        title: '',
+        text: '',
+        image: ''
+    }
+
     const [activeIndex, dispatch] = useReducer(resultIndexReducer, initialState);
+
+    const [titles, setTitleIndexes] = useState(() => Array.from({ length: 7 }, () => Math.floor(Math.random() * 15)));
+    const [imageIndexes, setImageIndexes] = useState(() => Array.from({ length: 7 }, () => Math.floor(Math.random() * 20)));
 
     const handleClick = (action: 'NEXT_INDEX' | 'PREV_INDEX' | 'SET_INDEX', index?: number) => {
         switch (action) {
@@ -302,8 +323,8 @@ export function Result({ userCareer }: resultProps) {
         <Frame>
             <div className={styles.background}>
                 <div className={styles.wrap}>
-                    {/* {activeIndex.index === 0 && <FirstResult />} */}
-                    {activeIndex.index !== 0 && <OtherResult status={userCareer.question[activeIndex.index]} />}
+                    {activeIndex.index === 0 && <FirstResult result={result} />}
+                    {activeIndex.index !== 0 && <OtherResult status={userCareer.question[activeIndex.index]} titleIndex={titles[activeIndex.index - 1]} imageIndex={imageIndexes[activeIndex.index - 1]} />}
                     <Footer activeIndex={activeIndex.index} onClick={handleClick} />
                 </div>
             </div>

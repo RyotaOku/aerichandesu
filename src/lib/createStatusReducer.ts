@@ -24,7 +24,11 @@ export type Action =
     | { type: 'UPDATE_ANSWER'; payload: { text: string; answer: questionType['answer'] } };
 
 function getRandomPercent(min: number, max: number): string {
-    return `${Math.floor(Math.random() * (max - min + 1) + min)}%`;
+    let percent: number;
+    do {
+        percent = Math.floor(Math.random() * (max - min + 1)) + min;
+    } while (percent === 50);
+    return `${percent}%`;
 }
 
 export function userCareerReducer(userCareer: userCareerType, action: Action): userCareerType {

@@ -12,5 +12,4 @@ export type result = {
     title: string;
     image: string;
     text: string;
-    status: statusArray[]
 }
