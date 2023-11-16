@@ -11,6 +11,8 @@ function Test01() {
     const [mail, setMail] = useState("")
     const [pass, setPass] = useState("")
 
+    // COMMENT: 型定義もできているとなお良し。
+
     return (
         <div>
             <h2>01.state,setStateを用いたinputタグを作成しよう</h2>
@@ -43,6 +45,7 @@ function Test02() {
     const [todoInput, setTodoInput] = useState("")
     const [todoArray, setTodoArray] = useState<string[]>([])
 
+    // COMMENT: 型定義もできているとなお良し。
 
     return (
         <div>
@@ -73,6 +76,7 @@ function Test02() {
             <ul>
                 {todoArray.map((v, idx) => (
                     <li key={idx}>{v}</li>
+                    // COMMENT: 削除ボタンがありまへんがな。
                 ))}
             </ul>
         </div>
@@ -82,6 +86,8 @@ function Test02() {
 function Test03() {
 
     const [state, dispatch] = useReducer(reducer, { count: 0 })
+
+    // COMMENT: 名称はこのままで良い？ 「state」だとなんのstateかわからない。
 
     // const initialState: State = {
     //     count: ''
@@ -104,6 +110,9 @@ function Test03() {
             <button onClick={() => dispatch({ type: ActionType.PLUS })}>+1する</button>
             <button onClick={() => dispatch({ type: ActionType.MINUS })}>-1する</button>
             <button onClick={() => dispatch({ type: ActionType.SET, payload: { count: 0 } })}>reset</button>
+            {/* COMMENT: RESETボタンをクリックしたらどうなるのだろう。0になるんだよな。0にしかならない。
+            それをわざわざpayloadで渡すのはなんでだろう。もし、0以外の数値を渡したら？ RESETボタンなのに、0以外の数値にもなり得る設計?
+            */}
         </div>
     )
 }
@@ -114,6 +123,9 @@ function Test04() {
     type ModalProps = {
         contents: string;
     }
+    // COMMENT: コードたちが窮屈だから改行したりして見やすくする癖をつけよう。
+    // COMMENT: Modal関数(コンポーネント)はなぜtest04の中にあるのだろう。コンポーネントとして設計しているなら、test04の外にあるのが自然。
+    // COMMENT: また、コンポーネント化したいるのにtest04の中になるせいで、test04の中でしか、Modal関数(コンポーネント)を使うことができない。
     function Modal({ contents }: ModalProps) {
         if (!modalFlg) return null;
         else return (
@@ -121,6 +133,9 @@ function Test04() {
                 setModalFlg(false)
             }}><div className={modal.modal} onClick={(e) => {
                 e.stopPropagation();
+                // COMMENT: stopPropagation()はなぜ必要なのだろう。これがないとどうなるのだろう。バブリングを止めるためだと思うが、
+                // バブリングが発生する理由を深く考えて、HTML構造から見直した方が良い。overlay>modalの構造だからバブリングが発生する。
+                // なら、overlay + modalの構造にすれば、HTML構造からしてもバブリングが発生しないし適切。modal要素がoverlayの子要素である必要はない。
             }
             }>{contents}</div></div>
         )
