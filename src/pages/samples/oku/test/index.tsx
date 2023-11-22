@@ -205,6 +205,28 @@ function Test04() {
     )
 }
 
+function Test06() {
+    const [count, setCount] = useState(0);
+
+    useEffect(() => {
+        console.log('こんにちは！');
+    }, [count])
+
+    return (
+        <div>
+            <h2>06.useEffect</h2>
+            <div className={style.conditions}>
+                <ul>
+                    <li>useEffectを使って,countの値が更新されるたびに、console.logでcountを表示する。</li>
+                    <li>text05で作成したButtonコンポーネントを使って、countを更新する。</li>
+                </ul>
+            </div>
+            <p>{count}</p>
+            {/* <Button /> */}
+        </div>
+    )
+}
+
 export default function Main() {
     return (
         <div className={style.wrap}>
@@ -226,7 +248,7 @@ export default function Main() {
             <Test03 />
             <Test04 />
             {/* <Test05 /> */}
-            {/* <Test06 /> */}
+            <Test06 />
         </div>
     )
 }

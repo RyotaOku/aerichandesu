@@ -109,7 +109,6 @@ function Test03() {
             <p>現在の値は{state.count}です。</p>
             <button onClick={() => dispatch({ type: ActionType.PLUS })}>+1する</button>
             <button onClick={() => dispatch({ type: ActionType.MINUS })}>-1する</button>
-            <button onClick={() => dispatch({ type: ActionType.SET, payload: { count: 0 } })}>reset</button>
             {/* COMMENT: RESETボタンをクリックしたらどうなるのだろう。0になるんだよな。0にしかならない。
             それをわざわざpayloadで渡すのはなんでだろう。もし、0以外の数値を渡したら？ RESETボタンなのに、0以外の数値にもなり得る設計?
             */}
@@ -193,6 +192,8 @@ function Button() {
 
 function Test06() {
     const [count, setCount] = useState(0);
+
+
 
     return (
         <div>
