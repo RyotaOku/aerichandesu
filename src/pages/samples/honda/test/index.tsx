@@ -1,8 +1,10 @@
 import style from '@/styles/samples/common.module.css'
 import modal from '@/styles/samples/honda/modal.module.css'
-import { useReducer, useState } from 'react'
+import { useEffect, useReducer, useState } from 'react'
 import { ActionType, reducer, State } from './reducer'
 import { log } from 'console'
+import { type } from 'os'
+import { text } from 'stream/consumers'
 
 function Test01() {
     // 全てに共通: 関数や機能の実装はそれぞれのコンポーネント内で行う。↓
@@ -161,8 +163,6 @@ function Test04() {
 
 function Test05() {
 
-
-
     return (
         <div>
             <h2>05.実際に使用するコンポーネント</h2>
@@ -174,24 +174,33 @@ function Test05() {
 
                 </ul>
             </div>
-            <Button />
+            <Button text='ボタンです' />
         </div>
     )
 }
 
-function Button() {
+type ButtonProps = {
+    disable?: true;
+    text: string;
+    theme?: string;
+}
+
+function Button({ text }: ButtonProps) {
     // buttonコンポーネントの実装はここで行う。
     //　必要に応じて、propsの設定も忘れずに。
 
-
-
     return (
-        <></>
+        <>
+            <button>{text}</button>
+        </>
     )
 }
 
 function Test06() {
     const [count, setCount] = useState(0);
+    useEffect(() => {
+        console.log();
+    }, [count])
 
 
 
@@ -205,7 +214,9 @@ function Test06() {
                 </ul>
             </div>
             <p>{count}</p>
-            <Button />
+            <button onClick={() => {
+                setCount(count + 1)
+            }}></button>
         </div>
     )
 }
