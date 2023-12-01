@@ -1,7 +1,4 @@
 import style from '@/styles/introduction/index.module.css'
-import Image from 'next/image'
-import { type } from 'os'
-import { text } from 'stream/consumers'
 import { Link as Scroll } from 'react-scroll'
 
 
