@@ -69,7 +69,7 @@ export function Feature(props: FeatureProps) {
 export default function Introduction() {
 
     return (
-        <>
+        <div className={style.wrap}>
             <div className={style.mainVisual}>
                 <div className={style.firstView}>
                     <nav className={style.navigation}>
@@ -90,38 +90,39 @@ export default function Introduction() {
                     <p>これは単なるポートフォリオサポートツールではありません。あなたの未来、キャリア、夢を形にするためのマジックボックスです。</p>
                     <a href="#">今すぐ始めよう</a>
                 </div>
-                <div className={style.decorationWrap} >
-                    <div className={style.decoration1}></div>
-                </div>
+            </div>
 
-                <div className={style.mainConceptWrap}>
-                    <MainConcept imgAlt='' imgSrc='mainConcept1.svg'>
-                        <p>ありのままに答えることで真のあなたの想いを引き出すことができます。</p>
-                    </MainConcept>
-                    <MainConcept imgAlt='' imgSrc='mainConcept2.svg'>
-                        <p>道に迷ったなら何度でもここへ
-                            帰ってきてください。何度でも
-                            お手伝いします。</p>
-                    </MainConcept>
-                    <MainConcept imgAlt='' imgSrc='mainConcept3.svg'>
-                        <p>自分のキャリアマップがわからないなら、自分を知ることから始めましょう。</p>
-                    </MainConcept>
-                    {/* <MainConcept text={'道に迷ったなら何度でもここへ帰ってきてください。何度でもお手伝いします。'} imgAlt='' imgSrc='mainConcept2.svg' /> */}
-                    {/* <MainConcept text={'自分のキャリアマップがわからないなら、自分を知ることから始めましょう。'} imgAlt='' imgSrc='mainConcept3.svg' /> */}
-                </div>
-                <div>
-                    <h2>美しい言葉、魅力的なフレーズ、あなたの真の価値を引き出すアドバイス。すべてがここに。</h2>
-                    <div className={style.conceptWrap}>
-                        <picture className={style.conceptImg}>
-                            <img src={getImagePath("sS1.png")} alt="" />
-                        </picture>
-                        <div className={style.conceptText}>
-                            <h3>必要なのは、ほんの数ステップです。</h3>
-                            <p>いくつかの質問に答えるだけで、あなたのための、クオリティーの高いサポートを提供します。</p>
-                        </div>
+            <div className={style.decorationWrap} >
+                <div className={style.decoration1}></div>
+            </div>
+
+            <div className={style.mainConceptWrap}>
+                <MainConcept imgAlt='' imgSrc='mainConcept1.svg'>
+                    <p>ありのままに答えることで真のあなたの想いを引き出すことができます。</p>
+                </MainConcept>
+                <MainConcept imgAlt='' imgSrc='mainConcept2.svg'>
+                    <p>道に迷ったなら何度でもここへ
+                        帰ってきてください。何度でも
+                        お手伝いします。</p>
+                </MainConcept>
+                <MainConcept imgAlt='' imgSrc='mainConcept3.svg'>
+                    <p>自分のキャリアマップがわからないなら、自分を知ることから始めましょう。</p>
+                </MainConcept>
+                {/* <MainConcept text={'道に迷ったなら何度でもここへ帰ってきてください。何度でもお手伝いします。'} imgAlt='' imgSrc='mainConcept2.svg' /> */}
+                {/* <MainConcept text={'自分のキャリアマップがわからないなら、自分を知ることから始めましょう。'} imgAlt='' imgSrc='mainConcept3.svg' /> */}
+            </div>
+            <div>
+                <h2>美しい言葉、魅力的なフレーズ、あなたの真の価値を引き出すアドバイス。すべてがここに。</h2>
+                <div className={style.conceptWrap}>
+                    <picture className={style.conceptImg}>
+                        <img src={getImagePath("sS1.png")} alt="" />
+                    </picture>
+                    <div className={style.conceptText}>
+                        <h3>必要なのは、ほんの数ステップです。</h3>
+                        <p>いくつかの質問に答えるだけで、あなたのための、クオリティーの高いサポートを提供します。</p>
                     </div>
-
                 </div>
+
             </div>
             <h2>これらの素晴らしい機能が、ひとつに。</h2>
             <div className={style.featuresWrap}>
@@ -135,6 +136,6 @@ export default function Introduction() {
                 </div>
             </div>
 
-        </>
+        </div>
     )
 }
