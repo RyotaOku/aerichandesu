@@ -1,40 +1,39 @@
-/* LPのstyle */
-
-.wrap {
-    overflow-x: hidden;
-    overflow-y: hidden;
-}
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 .mainVisual {
-    background: #006C61;
+    background: #006c61;
+    color: #fff;
     height: 80vh;
+    min-height: 80vh;
     position: relative;
     width: 100%;
+    /* border: 10px solid #000; */
+    /* border-bottom: 0.1px solid #006c61; */
+    box-shadow: 0 0 0 0.5px #006c61;
 }
 
 .mainVisual::after {
-    content: '';
+    content: "";
+    width: 100%;
+    height: 20vh;
     position: absolute;
-    width: 110%;
-    display: block;
-    height: 25vh;
     top: 100%;
-    transform-origin: left bottom;
-    transform: rotate(-7.5deg);
-    background: #006C61;
+    left: 0;
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+    background: #006c61;
+    z-index: -1;
 }
 
 .mainVisual::before {
-    content: '';
+    content: "";
+    width: 50%;
+    height: 20vh;
     position: absolute;
-    right: -15%;
-    width: 60%;
-    display: block;
-    height: 190px;
-    top: 109%;
-    transform-origin: right bottom;
-    transform: rotate(11deg);
-    background: #E8E8E8;
+    top: 100%;
+    right: 0;
+    clip-path: polygon(0 0, 100% 0, 100% 100%);
+    background: #e8e8e8;
+    z-index: -2;
 }
 
 .navigation {
@@ -52,21 +51,23 @@
     gap: 32px;
 }
 
-.firstView {
+.introFeaturesSection {
     position: relative;
-}
-
-.decorationWrap {
-    z-index: -10;
-    position: absolute;
     width: 100%;
-    height: 30%;
-    background: tomato;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    margin-bottom: 30vh;
+    /* margin: 0 auto; */
 }
-
-.mainConcept {
+.introFeaturesSection h2 {
+    margin-top: 64px;
+}
+.introFeatureChild {
     border: 1px solid #eee;
-    background: #ffffff80;
+    background: #ffffffee;
     border-radius: 8px;
     width: 300px;
     min-height: 350px;
@@ -79,7 +80,7 @@
     gap: 16px;
 }
 
-.mainConceptImg {
+.introFeatureImg {
     width: 100%;
     padding: 10%;
     /* border: 1px solid #000; */
@@ -88,50 +89,137 @@
     /* object-fit: cover; */
 }
 
-.mainConceptText {
+.introFeatureText {
     /* width: 50%; */
 }
 
-.mainConceptImg img {
+.introFeatureImg img {
     width: 100%;
     height: 100%;
 }
 
-.mainConceptWrap {
+.introFeaturesWrap {
     margin: 0 10%;
     justify-content: center;
     display: flex;
     gap: 32px;
 }
 
-.conceptWrap {
+.serviceDetailsSection {
+    width: 100%;
+    height: 50vw;
+    position: relative;
+    background: #282828;
+    box-shadow: 0 0 0 0.5px #282828;
+}
+.serviceDetailsSection::before {
+    content: "";
+    width: 100%;
+    height: 40vh;
+    position: absolute;
+    bottom: 90%;
+    left: 0;
+    clip-path: polygon(0 0, 0% 100%, 100% 100%);
+    background: #006c61;
+    z-index: -2;
+}
+.serviceDetailsSection::after {
+    content: "";
+    width: 100%;
+    height: 20vh;
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    clip-path: polygon(100% 1%, 0% 100%, 100% 100%);
+    background: #282828;
+    z-index: -1;
+}
+
+.serviceDetailsWrap {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10%;
+    position: absolute;
+    color: #fff;
+    padding-bottom: 2%;
+}
+
+.serviceDetail {
     width: 100%;
     display: flex;
 }
 
-.conceptImg {
+.serviceDetailImg {
     display: block;
     width: 40%;
+    /* height: 50vh; */
+    border-radius: 0px 8px 8px 0px;
+    overflow: hidden;
     /* border: 1px solid #000; */
 }
 
-.conceptImg img {
+.serviceDetailImg img {
     width: 100%;
+    height: 100%;
     object-fit: cover;
 }
 
-.conceptText {
+.serviceDetailText {
     width: 60%;
+    height: 100%;
+    display: flex;
+    padding-left: 8%;
+    /* align-items: center; */
+    justify-content: center;
+    flex-direction: column;
 }
 
-.featuresWrap {
+.detailedFunctionsSection {
+    /* border-top: 0.1px solid #282828; */
+    position: relative;
+    padding: 30vh 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.detailedFunctionsSection::after {
+    content: "";
+    width: 100%;
+    height: 20vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+    background: #282828;
+    z-index: -1;
+}
+
+.detailedFunctionsSection::before {
+    content: "";
+    width: 50%;
+    height: 20vh;
+    position: absolute;
+    top: 0;
+    right: 0;
+    clip-path: polygon(0 0, 100% 0, 100% 100%);
+    background: #006c61;
+    z-index: -2;
+}
+
+.detailedFunctionsWrap {
     display: flex;
     flex-wrap: wrap;
     gap: 32px;
     margin: 0 auto;
 }
 
-.feature {
+.detailedFunction {
     margin: 0 auto;
     display: flex;
     width: 520px;
@@ -141,37 +229,60 @@
     padding: 0 32px;
     gap: 32px;
     border: 1px solid #eee;
-    background: #ffffff80;
+    background: #ffffffee;
     border-radius: 8px;
 }
 
-.featureImg {
+.detailedFunctionImg {
     width: 30%;
     height: 100%;
 }
 
-/* .featureImg:first-child {
+/* .functionImg:first-child {
     border: 1px solid black;
     background: tomato;
 } */
 
-.featureImg img {
+.detailedFunctionImg img {
     padding: 40% 0;
     width: 100%;
     height: 100%;
     object-fit: contain;
 }
 
-.featureText {
+.detailedFunctionText {
     width: 70%;
     height: 100%;
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     justify-content: center;
     flex-direction: column;
     gap: 32px;
 }
 
-.featureImgGpt {
-    background: tomato;
+.footer {
+    position: relative;
+    background: #006c61;
+}
+.footer::before {
+    content: "";
+    width: 100%;
+    height: 40vh;
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    clip-path: polygon(0 0, 0% 100%, 100% 100%);
+    background: #e8e8e8;
+    z-index: -2;
+}
+.footer::after {
+    content: "";
+    width: 100%;
+    height: 20vh;
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    clip-path: polygon(100% 1%, 0% 100%, 100% 100%);
+    background: #006c61;
+    z-index: -1;
 }
