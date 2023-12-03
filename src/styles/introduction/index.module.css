@@ -11,7 +11,21 @@
     /* border-bottom: 0.1px solid #006c61; */
     box-shadow: 0 0 0 0.5px #006c61;
 }
-
+.topView {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+.topViewText {
+}
+.topViewImg {
+    height: 100%;
+}
+.topViewImg {
+    height: 100%;
+    /* width: 100%; */
+    object-fit: contain;
+}
 .mainVisual::after {
     content: "";
     width: 100%;
@@ -258,6 +272,92 @@
     justify-content: center;
     flex-direction: column;
     gap: 32px;
+}
+
+.userTestimonialSection {
+    text-align: center;
+    width: 100%;
+    /* background: tomato; */
+    margin: 8% 0;
+}
+
+.userTestimonial {
+    padding: 32px;
+    margin-top: 4%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: #e8e8e8;
+    gap: 32px;
+}
+.userDetailWrap {
+    height: 60vh;
+    width: 80%;
+    border-radius: 32px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.userDetailNavigation {
+    width: 10%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* cursor: pointer; */
+}
+.userDetailContent {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10%;
+}
+.userDetailImg {
+    width: 20%;
+    height: 100%;
+}
+.userDetailImg img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.userDetailText {
+    width: 70%;
+    height: 100%;
+    text-align: left;
+}
+.userButtonSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+.userButton {
+    display: flex;
+    height: 8vw;
+    width: 8vw;
+    padding: 10px;
+    background: #fff;
+    border-radius: 8px;
+}
+.userButton.active {
+    border: 2px solid #006c61;
+}
+
+.userButtonImg {
+    height: 100%;
+    width: 100%;
+}
+
+.userButtonImg img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
 }
 
 .footer {
