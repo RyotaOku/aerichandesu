@@ -1,4 +1,8 @@
 import { useState, useEffect, useReducer } from 'react'
+
+import 'primereact/resources/themes/saga-blue/theme.css';
+import 'primereact/resources/primereact.min.css';
+import 'primeicons/primeicons.css';
 import style from '@/styles/introduction/index.module.css'
 import { type } from 'os';
 import { Link as Scroll } from 'react-scroll'
@@ -197,7 +201,9 @@ export function UserTestimonial() {
             <h2>利用者の声</h2>
             <div className={style.userTestimonial}>
                 <div className={style.userDetailWrap}>
-                    <button className={`${style.userDetailPrev} ${style.userDetailNavigation}`} onClick={handlePrevClick} />
+                    <button className={style.userDetailNavigation} onClick={handlePrevClick}>
+                        <i className={`pi pi-chevron-left ${style.userDetailNavBtn}`} />
+                    </button>
                     <div className={style.userDetailContent}>
                         <picture className={style.userDetailImg}><img src={getImagePath(currentUser.imgSrc)} alt="" /></picture>
                         <div className={style.userDetailText}>
@@ -205,7 +211,9 @@ export function UserTestimonial() {
                             <p>{currentUser.comment}</p>
                         </div>
                     </div>
-                    <button className={`${style.userDetailNext} ${style.userDetailNavigation}`} onClick={handleNextClick} />
+                    <button className={`${style.userDetailNext} ${style.userDetailNavigation}`} onClick={handleNextClick}>
+                        <i className={`pi pi-chevron-right ${style.userDetailNavBtn}`} />
+                    </button>
                 </div>
                 <div className={style.userButtonSection}>
                     {users.map((user, index) => (
@@ -298,8 +306,9 @@ export default function Introduction() {
             </div>
 
             <UserTestimonial />
-            <h2>さあ、準備は整いましたか？
-                私たちと一緒に、あなたのキャリアデザインを
+
+            <h2>さあ、準備は整いましたか？<br />
+                私たちと一緒に、あなたのキャリアデザインを<br />
                 素敵に彩りましょう！</h2>
             <a href="#">今すぐ始めよう</a>
 

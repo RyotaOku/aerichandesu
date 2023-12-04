@@ -309,6 +309,10 @@
     align-items: center;
     /* cursor: pointer; */
 }
+.userDetailNavBtn {
+    color: #006c61;
+    font-size: 2rem;
+}
 .userDetailContent {
     width: 80%;
     height: 100%;
