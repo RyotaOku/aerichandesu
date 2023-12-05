@@ -1,5 +1,26 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
+.button {
+    width: 256px;
+    height: 64px;
+    background: #006c61;
+    color: #fff;
+    border-radius: 10px;
+}
+.darkButton {
+    background: #fff;
+    color: #006c61;
+}
+
+.button a {
+    color: inherit;
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+}
+
 .mainVisual {
     background: #006c61;
     color: #fff;

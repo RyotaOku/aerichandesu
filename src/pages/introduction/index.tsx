@@ -13,6 +13,23 @@ function getImagePath(filename: string) {
     return `/images/introduction/${filename}`;
 }
 
+type ButtonProps = {
+    darkColor?: boolean,
+    url: string,
+    text: string,
+
+
+}
+export function Button(props: ButtonProps) {
+    return (
+        <div className={`${style.button} ${props.darkColor ? style.darkButton : ""}`}>
+            <a href={props.url}>
+                {props.text}
+            </a>
+        </div>
+    )
+}
+
 type introFeatureProps = {
     children?: React.ReactNode,
     imgAlt: string,
@@ -250,7 +267,7 @@ export default function Introduction() {
                             キャリアプラットフォーム。</h2>
                         <h3>自分を知り、未来を創る。</h3>
                         <p>これは単なるポートフォリオサポートツールではありません。あなたの未来、キャリア、夢を形にするためのマジックボックスです。</p>
-                        <a href="#">今すぐ始めよう</a>
+                        <Button darkColor url='#' text='今すぐ始めよう' />
                     </div>
                     <picture className={style.topViewImg}><img src={getImagePath("mainVisual.svg")} alt="" /></picture>
                 </div>
@@ -310,8 +327,7 @@ export default function Introduction() {
             <h2>さあ、準備は整いましたか？<br />
                 私たちと一緒に、あなたのキャリアデザインを<br />
                 素敵に彩りましょう！</h2>
-            <a href="#">今すぐ始めよう</a>
-
+            <Button url='#' text='はじめましょう！' />
             <footer className={style.footer}>
                 <ul>
                     <li><a href='#'>プライバシー&利用規約</a></li>
