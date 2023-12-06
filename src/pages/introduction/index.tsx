@@ -5,20 +5,20 @@ import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import style from '@/styles/introduction/index.module.css'
 import { type } from 'os';
-import { Link as Scroll } from 'react-scroll'
-import { log } from 'console';
+import { Link, Element, Events, animateScroll as scroll, scrollSpy } from 'react-scroll';
 
 
 function getImagePath(filename: string) {
     return `/images/introduction/${filename}`;
 }
+const scrollToTop = () => {
+    scroll.scrollToTop();
+};
 
 type ButtonProps = {
     darkColor?: boolean,
     url: string,
     text: string,
-
-
 }
 export function Button(props: ButtonProps) {
     return (
@@ -30,6 +30,8 @@ export function Button(props: ButtonProps) {
     )
 }
 
+
+
 type introFeatureProps = {
     children?: React.ReactNode,
     imgAlt: string,
@@ -39,13 +41,13 @@ type introFeatureProps = {
 export function IntroFeature(props: introFeatureProps) {
 
     return (
-        <div className={style.introFeatureChild}>
+        <div className={style.introFeature}>
             <picture className={style.introFeatureImg}>
                 <img src={getImagePath(props.imgSrc)}
                     alt={props.imgAlt} />
             </picture>
             {/* <p className={style.introFeatureText}>{props.text}</p> */}
-            {props.children}
+            <div className={style.introFeatureText}>{props.children}</div>
         </div>
     )
 }
@@ -249,24 +251,25 @@ export default function Introduction() {
     return (
         <>
             <div className={style.mainVisual}>
-                <nav className={style.navigation}>
-                    <h1>Service Name</h1>
-                    <ul>
-                        <li>
-                            <Scroll to='test' smooth>特徴</Scroll>
-                        </li>
-                        <li>利点</li>
-                        <li>利用者の声</li>
-                    </ul>
-                </nav>
+                <header className={style.navigation}>
+                    <nav>
+                        <h1>Service Name</h1>
+                        <ul>
+                            <li><Link to='serviceDetails' smooth offset={-50}>特徴</Link></li>
+                            <li><Link to='serviceDetails' smooth offset={-50}>利点</Link></li>
+                            <li><Link to='serviceDetails' smooth offset={-50}>利用者の声</Link></li>
+                        </ul>
+                    </nav>
+                </header>
 
 
                 <div className={style.topView}>
                     <div className={style.topViewText}>
-                        <h2>あなたの魅力を最大限引き出す、
+                        <h2>あなたの魅力を最大限引き出す、<br />
                             キャリアプラットフォーム。</h2>
                         <h3>自分を知り、未来を創る。</h3>
-                        <p>これは単なるポートフォリオサポートツールではありません。あなたの未来、キャリア、夢を形にするためのマジックボックスです。</p>
+                        <p>これは単なるポートフォリオサポートツールではありません。<br />
+                            あなたの未来、キャリア、夢を形にするためのマジックボックスです。</p>
                         <Button darkColor url='#' text='今すぐ始めよう' />
                     </div>
                     <picture className={style.topViewImg}><img src={getImagePath("mainVisual.svg")} alt="" /></picture>
@@ -287,7 +290,7 @@ export default function Introduction() {
                         <p>自分のキャリアマップがわからないなら、自分を知ることから始めましょう。</p>
                     </IntroFeature>
                 </div>
-                <h2>美しい言葉、魅力的なフレーズ、<br />あなたの真の価値を引き出すアドバイス。<br />すべてがここに。</h2>
+                <h2 id='serviceDetails'>美しい言葉、魅力的なフレーズ、<br />あなたの真の価値を引き出すアドバイス。<br />すべてがここに。</h2>
             </div>
 
             <div className={style.serviceDetailsSection}>
@@ -303,7 +306,7 @@ export default function Introduction() {
                         imgAlt=''
                         title="あなたのことを教えてください。"
                         text="GPT-4搭載の優れたAIがあなたの強みやキャリアビジョンを言語化。"
-                    ><div><p>produced by</p>
+                    ><div className={style.openAi}><p>produced by</p>
                             <picture><img src={getImagePath("OpenAiLogo.svg")} alt="" /></picture>
                         </div></ServiceDetail>
                 </div>
@@ -324,18 +327,25 @@ export default function Introduction() {
 
             <UserTestimonial />
 
-            <h2>さあ、準備は整いましたか？<br />
-                私たちと一緒に、あなたのキャリアデザインを<br />
-                素敵に彩りましょう！</h2>
-            <Button url='#' text='はじめましょう！' />
+            <div className={style.getStartedSection}>
+                <h2>さあ、準備は整いましたか？<br />
+                    私たちと一緒に、あなたのキャリアデザインを<br />
+                    素敵に彩りましょう！</h2>
+                <Button url='#' text='はじめましょう！' />
+            </div>
             <footer className={style.footer}>
                 <ul>
-                    <li><a href='#'>プライバシー&利用規約</a></li>
-                    <li><a href='#'>お問い合わせ</a></li>
-                    <li><a href='#'>私たちについて</a></li>
+                    <li><Link to='#'>プライバシー&利用規約</Link></li>
+                    <li><Link to='#'>お問い合わせ</Link></li>
+                    <li><Link to='#'>私たちについて</Link></li>
                 </ul>
-
                 <p><small>Service Name.inc &copy; 2023</small></p>
+                <div className={style.snsIcon}>
+                    <Link to='#'><i className={`pi pi-twitter`} /></Link>
+                    <Link to='#'><i className={`pi pi-instagram`} /></Link>
+                    <Link to='#'><i className={`pi pi-facebook`} /></Link>
+                </div>
+                <a onClick={scrollToTop} className={style.scrollTop}><i className={`pi pi-chevron-up`} />TOP</a>
             </footer>
 
         </>
