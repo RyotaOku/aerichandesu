@@ -115,22 +115,6 @@ export function ServiceDetail(props: ServiceDetailProps) {
     )
 }
 
-// type userProps = {
-//     imgAlt: string,
-//     imgSrc: string,
-// }
-
-// export function UserButton(props: userProps) {
-//     return (
-//         <button className={style.userButton}>
-//             <picture className={style.userButtonImg}><img src={getImagePath(props.imgSrc)} alt={props.imgAlt} /></picture>
-//         </button>
-//     )
-// }
-
-
-
-
 type userProps = {
     imgAlt: string,
     imgSrc: string,
@@ -216,7 +200,7 @@ export function UserTestimonial() {
     const currentUser = users[currentIndex];
 
     return (
-        <div className={style.userTestimonialSection}>
+        <div id='userTestimonial' className={style.userTestimonialSection}>
             <h2>利用者の声</h2>
             <div className={style.userTestimonial}>
                 <div className={style.userDetailWrap}>
@@ -249,15 +233,15 @@ export function UserTestimonial() {
 export default function Introduction() {
 
     return (
-        <>
+        <div className={style.wrap}>
             <div className={style.mainVisual}>
                 <header className={style.navigation}>
                     <nav>
-                        <h1>Service Name</h1>
+                        <h1><Link to="#">Service Name</Link></h1>
                         <ul>
                             <li><Link to='serviceDetails' smooth offset={-50}>特徴</Link></li>
-                            <li><Link to='serviceDetails' smooth offset={-50}>利点</Link></li>
-                            <li><Link to='serviceDetails' smooth offset={-50}>利用者の声</Link></li>
+                            <li><Link to='detailedFunctions' smooth offset={200}>利点</Link></li>
+                            <li><Link to='userTestimonial' smooth offset={-50}>利用者の声</Link></li>
                         </ul>
                     </nav>
                 </header>
@@ -287,10 +271,14 @@ export default function Introduction() {
                             お手伝いします。</p>
                     </IntroFeature>
                     <IntroFeature imgAlt='' imgSrc='introFeature3.svg'>
-                        <p>自分のキャリアマップがわからないなら、自分を知ることから始めましょう。</p>
+                        <p>自分のキャリアマップがわからないなら、
+                            自分を知ることから始めましょう。</p>
                     </IntroFeature>
+                    <div className={style.BackGround} />
                 </div>
-                <h2 id='serviceDetails'>美しい言葉、魅力的なフレーズ、<br />あなたの真の価値を引き出すアドバイス。<br />すべてがここに。</h2>
+                <h2 id='serviceDetails'>美しい言葉、魅力的なフレーズ、<br />
+                    あなたの真の価値を引き出すアドバイス。<br />
+                    すべてがここに。</h2>
             </div>
 
             <div className={style.serviceDetailsSection}>
@@ -311,7 +299,7 @@ export default function Introduction() {
                         </div></ServiceDetail>
                 </div>
             </div>
-            <div className={style.detailedFunctionsSection}>
+            <div id='detailedFunctions' className={style.detailedFunctionsSection}>
                 <h2>これらの素晴らしい機能が、ひとつに。</h2>
                 <div className={style.detailedFunctionsWrap}>
                     <div className={style.detailedFunctionsWrap}>
@@ -348,6 +336,6 @@ export default function Introduction() {
                 <a onClick={scrollToTop} className={style.scrollTop}><i className={`pi pi-chevron-up`} />TOP</a>
             </footer>
 
-        </>
+        </div>
     )
 }

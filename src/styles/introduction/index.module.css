@@ -25,16 +25,20 @@
     background: #fff;
     color: var(--color-primary);
 }
-
+.wrap {
+    width: 100%;
+    overflow: hidden;
+}
 /* mainVisual */
 
 .mainVisual {
     background: var(--color-primary);
+    margin-bottom: 64px;
     color: #fff;
-    height: 100vh;
-    height: 80vh;
-    position: relative;
     width: 100%;
+    height: 600px;
+    padding: 0 64px;
+    position: relative;
     /* border: 10px solid #000; */
     /* border-bottom: 0.1px solid var(--color-primary); */
     box-shadow: 0 0 0 0.5px var(--color-primary);
@@ -60,14 +64,16 @@
     list-style: none;
     gap: 32px;
 }
-
+.navigation a {
+    cursor: pointer;
+}
 /* topView */
 
 .topView {
     display: flex;
     width: 100%;
     height: 90%;
-    padding: 5% 0;
+    padding: 64px 0 0;
     justify-content: space-around;
 }
 
@@ -106,22 +112,24 @@
 
 .mainVisual::after {
     content: "";
-    width: 100%;
-    height: 20vh;
-    position: absolute;
+    width: 4096px;
+    height: 500px;
     top: 100%;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
     clip-path: polygon(0 0, 100% 0, 0 100%);
     background: var(--color-primary);
     z-index: -1;
 }
 .mainVisual::before {
     content: "";
-    width: 50%;
-    height: 20vh;
-    position: absolute;
+    width: 4096px;
+    height: 600px;
     top: 100%;
-    right: 0;
+    left: 75%;
+    transform: translateX(-50%);
+    position: absolute;
     clip-path: polygon(0 0, 100% 0, 100% 100%);
     background: #e8e8e8;
     z-index: -2;
@@ -180,7 +188,32 @@
 }
 
 .introFeaturesSection h2 {
-    margin-top: 96px;
+    position: relative;
+    width: 100%;
+    display: block;
+    padding: 128px 0 256px;
+}
+.introFeaturesSection h2::before {
+    position: absolute;
+    content: "";
+    width: 400px;
+    height: 400px;
+    left: 64px;
+    bottom: 128px;
+    background: url(/images/introduction/introFeaturesDeco1.svg) bottom
+        center/contain no-repeat;
+    z-index: -2;
+}
+.introFeaturesSection h2::after {
+    position: absolute;
+    content: "";
+    width: 400px;
+    height: 400px;
+    right: 64px;
+    bottom: 0;
+    background: url(/images/introduction/introFeaturesDeco2.svg) bottom
+        center/contain no-repeat;
+    z-index: -2;
 }
 
 /* serviceDetails */
@@ -188,11 +221,16 @@
 .serviceDetailsSection {
     width: 100%;
     height: 50vw;
+    margin: 0 0 -256px;
+    /* padding: -128px 0 0; */
     position: relative;
-    background: #282828;
-    box-shadow: 0 0 0 0.5px #282828;
+    /* background: #282828; */
+    /* box-shadow: 0 0 0 0.5px #282828; */
 }
 .serviceDetailsWrap {
+    background: #282828;
+    position: relative;
+    transform: translateY(-128px);
     width: 100%;
     height: 100%;
     display: flex;
@@ -200,9 +238,15 @@
     justify-content: center;
     flex-direction: column;
     gap: 10%;
-    position: absolute;
     color: #fff;
     padding-bottom: 2%;
+}
+.BackGround {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
 }
 .serviceDetail {
     width: 100%;
@@ -251,22 +295,24 @@
 
 .serviceDetailsSection::before {
     content: "";
-    width: 100%;
-    height: 40vh;
+    width: 4096px;
+    height: 600px;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
     position: absolute;
-    bottom: 90%;
-    left: 0;
     clip-path: polygon(0 0, 0% 100%, 100% 100%);
     background: var(--color-primary);
-    z-index: -2;
+    z-index: -1;
 }
 .serviceDetailsSection::after {
     content: "";
-    width: 100%;
-    height: 20vh;
-    position: absolute;
+    width: 4096px;
+    height: 500px;
     bottom: 100%;
-    right: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
     clip-path: polygon(100% 1%, 0% 100%, 100% 100%);
     background: #282828;
     z-index: -1;
@@ -276,12 +322,14 @@
 
 .detailedFunctionsSection {
     /* border-top: 0.1px solid #282828; */
+
     position: relative;
-    padding: 30vh 32px 0;
+    padding: 250px 32px 0;
     display: flex;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
     flex-direction: column;
+    z-index: -10;
 }
 .detailedFunctionsSection h2 {
     margin: 0 0 64px;
@@ -332,25 +380,27 @@
 }
 .detailedFunctionsSection::after {
     content: "";
-    width: 100%;
-    height: 20vh;
-    position: absolute;
+    width: 4096px;
+    height: 500px;
     top: 0;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
     clip-path: polygon(0 0, 100% 0, 0 100%);
     background: #282828;
     z-index: -1;
 }
 .detailedFunctionsSection::before {
     content: "";
-    width: 50%;
-    height: 20vh;
-    position: absolute;
+    width: 4096px;
+    height: 600px;
     top: 0;
-    right: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
     clip-path: polygon(0 0, 100% 0, 100% 100%);
     background: var(--color-primary);
-    z-index: -2;
+    z-index: -1;
 }
 
 /* userTestimonial */
@@ -373,7 +423,7 @@
     gap: 32px;
 }
 .userDetailWrap {
-    height: 55vh;
+    height: 400px;
     width: 80%;
     border-radius: 32px;
     background: #fff;
@@ -469,6 +519,7 @@
 /* getStartedSection */
 
 .getStartedSection {
+    position: relative;
     width: 100%;
     text-align: center;
     display: flex;
@@ -477,6 +528,30 @@
     flex-direction: column;
     margin-bottom: 40vh;
     gap: 64px;
+}
+
+.getStartedSection::before {
+    position: absolute;
+    content: "";
+    width: 500px;
+    height: 500px;
+    left: 64px;
+    bottom: -150px;
+    transform: rotate(4deg);
+    background: url(/images/introduction/footerDeco1.svg) bottom center/contain
+        no-repeat;
+    z-index: 0;
+}
+.getStartedSection::after {
+    position: absolute;
+    content: "";
+    width: 500px;
+    height: 500px;
+    right: 64px;
+    bottom: -220px;
+    background: url(/images/introduction/footerDeco2.svg) bottom center/contain
+        no-repeat;
+    z-index: -2;
 }
 
 /* footer */
@@ -494,7 +569,7 @@
 }
 .footer ul {
     position: absolute;
-    bottom: 100%;
+    top: 100%;
     list-style: none;
     display: flex;
     flex-direction: column;
@@ -505,6 +580,7 @@
 .footer ul a {
     color: var(--color-text);
     text-decoration: none;
+    cursor: pointer;
 }
 .snsIcon {
     display: flex;
@@ -513,13 +589,15 @@
 .snsIcon a {
     color: #fff;
     font-size: 32px;
+    cursor: pointer;
 }
 .snsIcon i {
     font-size: inherit;
 }
 .scrollTop {
+    cursor: pointer;
     position: absolute;
-    bottom: 100%;
+    top: 100%;
     right: 32px;
     display: flex;
     align-items: center;
@@ -539,7 +617,7 @@
     left: 0;
     clip-path: polygon(0 0, 0% 100%, 100% 100%);
     background: #e8e8e8;
-    z-index: -2;
+    z-index: -1;
 }
 .footer::after {
     content: "";
