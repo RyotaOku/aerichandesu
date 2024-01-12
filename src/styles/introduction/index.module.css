@@ -11,6 +11,7 @@
     color: #fff;
     border-radius: 10px;
 }
+
 .button a {
     width: 100%;
     height: 100%;
@@ -21,14 +22,17 @@
     font-weight: 700;
     font-size: 1rem;
 }
+
 .darkButton {
     background: #fff;
     color: var(--color-primary);
 }
+
 .wrap {
     width: 100%;
     overflow: hidden;
 }
+
 /* mainVisual */
 
 .mainVisual {
@@ -48,7 +52,7 @@
 
 .navigation {
     width: 100%;
-    height: 10%;
+    height: 15%;
 }
 
 .navigation nav {
@@ -57,16 +61,40 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 32px;
+    padding: 0 2rem;
 }
+
 .navigation ul {
     display: flex;
     list-style: none;
-    gap: 32px;
+    gap: 4rem;
+    font-weight: bold;
+    font-size: 1.2rem;
 }
+
 .navigation a {
     cursor: pointer;
 }
+
+.navigation nav h1 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.navigation nav h1 .logo {
+    height: 3rem;
+    width: auto;
+    overflow: hidden;
+    display: block;
+}
+
+.navigation nav h1 .logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
 /* topView */
 
 .topView {
@@ -84,15 +112,18 @@
     justify-content: space-between;
     flex-direction: column;
 }
+
 .topViewText h2 {
     font-size: 2.8rem;
     line-height: 5rem;
 }
+
 .topViewText h3 {
     display: flex;
     gap: 8px;
     font-weight: 400;
 }
+
 .topViewText h3::before {
     content: "";
     display: block;
@@ -104,6 +135,7 @@
 .topViewImg {
     height: 100%;
 }
+
 .topViewImg img {
     height: 100%;
     /* width: 100%; */
@@ -122,6 +154,7 @@
     background: var(--color-primary);
     z-index: -1;
 }
+
 .mainVisual::before {
     content: "";
     width: 4096px;
@@ -148,12 +181,14 @@
     margin-bottom: 28vh;
     /* margin: 0 auto; */
 }
+
 .introFeaturesWrap {
     margin: 0 10%;
     justify-content: center;
     display: flex;
     gap: 32px;
 }
+
 .introFeature {
     border: 1px solid #eee;
     background: #ffffffee;
@@ -178,6 +213,7 @@
     /* padding: 10% 10% 0; */
     /* object-fit: cover; */
 }
+
 .introFeatureImg img {
     width: 100%;
     height: 100%;
@@ -193,6 +229,7 @@
     display: block;
     padding: 128px 0 256px;
 }
+
 .introFeaturesSection h2::before {
     position: absolute;
     content: "";
@@ -200,10 +237,10 @@
     height: 400px;
     left: 64px;
     bottom: 128px;
-    background: url(/images/introduction/introFeaturesDeco1.svg) bottom
-        center/contain no-repeat;
+    background: url(/images/introduction/introFeaturesDeco1.svg) bottom center/contain no-repeat;
     z-index: -2;
 }
+
 .introFeaturesSection h2::after {
     position: absolute;
     content: "";
@@ -211,8 +248,7 @@
     height: 400px;
     right: 64px;
     bottom: 0;
-    background: url(/images/introduction/introFeaturesDeco2.svg) bottom
-        center/contain no-repeat;
+    background: url(/images/introduction/introFeaturesDeco2.svg) bottom center/contain no-repeat;
     z-index: -2;
 }
 
@@ -227,6 +263,7 @@
     /* background: #282828; */
     /* box-shadow: 0 0 0 0.5px #282828; */
 }
+
 .serviceDetailsWrap {
     background: #282828;
     position: relative;
@@ -241,13 +278,18 @@
     color: #fff;
     padding-bottom: 2%;
 }
+
+/* TODO ↓　これなに。何のために存在している？
+消してもみた感じ変化がないが...。 */
 .BackGround {
     position: absolute;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
+    display: none;
 }
+
 .serviceDetail {
     width: 100%;
     display: flex;
@@ -261,6 +303,7 @@
     overflow: hidden;
     /* border: 1px solid #000; */
 }
+
 .serviceDetailImg img {
     width: 100%;
     height: 100%;
@@ -279,15 +322,18 @@
     gap: 16px;
     font-weight: 500;
 }
+
 .serviceDetailText h3 {
     font-weight: inherit;
 }
+
 .openAi {
     width: 100%;
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
 }
+
 .openAi p {
     padding-bottom: 6px;
     padding-right: 4px;
@@ -305,6 +351,7 @@
     background: var(--color-primary);
     z-index: -1;
 }
+
 .serviceDetailsSection::after {
     content: "";
     width: 4096px;
@@ -321,25 +368,26 @@
 /* detailedFunctions */
 
 .detailedFunctionsSection {
-    /* border-top: 0.1px solid #282828; */
-
     position: relative;
-    padding: 250px 32px 0;
+    padding: 30rem 32px 0;
     display: flex;
     align-items: center;
     /* justify-content: center; */
     flex-direction: column;
     z-index: -10;
 }
+
 .detailedFunctionsSection h2 {
     margin: 0 0 64px;
 }
+
 .detailedFunctionsWrap {
     display: flex;
     flex-wrap: wrap;
     gap: 32px;
     margin: 0 auto;
 }
+
 .detailedFunction {
     margin: 0 auto;
     display: flex;
@@ -359,6 +407,7 @@
     width: 30%;
     height: 100%;
 }
+
 .detailedFunctionImg img {
     padding: 40% 0;
     width: 100%;
@@ -375,9 +424,11 @@
     flex-direction: column;
     gap: 8px;
 }
+
 .detailedFunctionText h3 {
     color: var(--color-primary);
 }
+
 .detailedFunctionsSection::after {
     content: "";
     width: 4096px;
@@ -390,6 +441,7 @@
     background: #282828;
     z-index: -1;
 }
+
 .detailedFunctionsSection::before {
     content: "";
     width: 4096px;
@@ -411,6 +463,7 @@
     /* background: tomato; */
     margin: 128px 0;
 }
+
 .userTestimonial {
     padding: 32px;
     margin-top: 64px;
@@ -422,6 +475,7 @@
     background: #e8e8e8;
     gap: 32px;
 }
+
 .userDetailWrap {
     height: 400px;
     width: 80%;
@@ -440,6 +494,7 @@
     align-items: center;
     /* cursor: pointer; */
 }
+
 .userDetailNavBtn {
     color: var(--color-primary);
     font-size: 2rem;
@@ -458,6 +513,7 @@
     width: 20%;
     height: 100%;
 }
+
 .userDetailImg img {
     width: 100%;
     height: 100%;
@@ -473,28 +529,33 @@
     flex-direction: column;
     gap: 32px;
 }
+
 .userDetailText h3 {
     color: var(--color-primary);
     font-size: 1.4rem;
     display: flex;
     align-items: flex-end;
 }
+
 .userDetailText h3 span {
     display: block;
     color: var(--color-text);
     font-size: 80%;
     margin-left: 16px;
 }
+
 .userDetailText p {
     font-size: 1.1rem;
     line-height: 2.4rem;
 }
+
 .userButtonSection {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 16px;
 }
+
 .userButton {
     display: flex;
     height: 8vw;
@@ -503,6 +564,7 @@
     background: #fff;
     border-radius: 8px;
 }
+
 .userButton.active {
     border: 2px solid var(--color-primary);
 }
@@ -511,11 +573,13 @@
     height: 100%;
     width: 100%;
 }
+
 .userButtonImg img {
     height: 100%;
     width: 100%;
     object-fit: contain;
 }
+
 /* getStartedSection */
 
 .getStartedSection {
@@ -538,10 +602,10 @@
     left: 64px;
     bottom: -150px;
     transform: rotate(4deg);
-    background: url(/images/introduction/footerDeco1.svg) bottom center/contain
-        no-repeat;
+    background: url(/images/introduction/footerDeco1.svg) bottom center/contain no-repeat;
     z-index: 0;
 }
+
 .getStartedSection::after {
     position: absolute;
     content: "";
@@ -549,8 +613,7 @@
     height: 500px;
     right: 64px;
     bottom: -220px;
-    background: url(/images/introduction/footerDeco2.svg) bottom center/contain
-        no-repeat;
+    background: url(/images/introduction/footerDeco2.svg) bottom center/contain no-repeat;
     z-index: -2;
 }
 
@@ -567,6 +630,7 @@
     box-shadow: 0 0 0 0.5px var(--color-primary);
     color: #fff;
 }
+
 .footer ul {
     position: absolute;
     top: 100%;
@@ -577,23 +641,28 @@
     padding: 6% 0;
     height: 40vh;
 }
+
 .footer ul a {
     color: var(--color-text);
     text-decoration: none;
     cursor: pointer;
 }
+
 .snsIcon {
     display: flex;
     gap: 32px;
 }
+
 .snsIcon a {
     color: #fff;
     font-size: 32px;
     cursor: pointer;
 }
+
 .snsIcon i {
     font-size: inherit;
 }
+
 .scrollTop {
     cursor: pointer;
     position: absolute;
@@ -605,9 +674,11 @@
     flex-direction: column;
     text-align: center;
 }
+
 .scrollTop i {
     font-size: 2rem;
 }
+
 .footer::before {
     content: "";
     width: 100%;
@@ -619,6 +690,7 @@
     background: #e8e8e8;
     z-index: -1;
 }
+
 .footer::after {
     content: "";
     width: 100%;

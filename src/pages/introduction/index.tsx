@@ -4,7 +4,6 @@ import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import style from '@/styles/introduction/index.module.css'
-import { type } from 'os';
 import { Link, Element, Events, animateScroll as scroll, scrollSpy } from 'react-scroll';
 
 
@@ -237,7 +236,11 @@ export default function Introduction() {
             <div className={style.mainVisual}>
                 <header className={style.navigation}>
                     <nav>
-                        <h1><Link to="#">Service Name</Link></h1>
+                        <h1>
+                            <Link to="#">
+                                <picture className={style.logo}><img src="/images/iconSet_white.png" alt="aeDesignsQuestのロゴ" /></picture>
+                            </Link>
+                        </h1>
                         <ul>
                             <li><Link to='serviceDetails' smooth offset={-50}>特徴</Link></li>
                             <li><Link to='detailedFunctions' smooth offset={200}>利点</Link></li>
@@ -245,7 +248,6 @@ export default function Introduction() {
                         </ul>
                     </nav>
                 </header>
-
 
                 <div className={style.topView}>
                     <div className={style.topViewText}>
@@ -274,6 +276,10 @@ export default function Introduction() {
                         <p>自分のキャリアマップがわからないなら、
                             自分を知ることから始めましょう。</p>
                     </IntroFeature>
+
+                    {/* TODO ↓これなに
+                    どうして大文字なの？
+                    */}
                     <div className={style.BackGround} />
                 </div>
                 <h2 id='serviceDetails'>美しい言葉、魅力的なフレーズ、<br />
