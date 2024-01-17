@@ -1,6 +1,6 @@
 import { useState, useEffect, useReducer } from 'react'
 import style from '@/styles/createStatus/index.module.css'
-import { CreateStatusHeader } from '../../components/createStatus/Header'
+import { CreateStatusHeader } from '@/components/createStatus/Header'
 import { Frame } from '@/components/common/Frame'
 import { Select } from '@/components/createStatus/Select'
 import { CheckboxContent } from '@/types/carrierTypes'
