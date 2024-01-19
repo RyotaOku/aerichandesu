@@ -1,6 +1,6 @@
 import { useState, useEffect, useReducer } from 'react'
 import style from '@/styles/createStatus/index.module.css'
-// import { CreateStatusHeader } from '@/components/createStatus/Header'
+import { CreateStatusHeader } from '@/components/createStatus/Header'
 import { Frame } from '@/components/common/Frame'
 import { Select } from '@/components/createStatus/Select'
 import { CheckboxContent } from '@/types/carrierTypes'
@@ -190,7 +190,7 @@ export default function Main() {
 
     return (
         <Frame className={step.index === 2 ? style.scrollable : ''}>
-            {/* {step.index !== 4 && <CreateStatusHeader className={step.index === 2 ? style.scrollableHeader : ''} step={step.index} maxStep={step.maxStep} dispatch={indexDispatch} />} */}
+            {step.index !== 4 && <CreateStatusHeader className={step.index === 2 ? style.scrollableHeader : ''} step={step.index} maxStep={step.maxStep} dispatch={indexDispatch} />}
             {step.index === 0 && <CareerCategories dispatch={userCareerDispatch} selectedOptions={userCareer.field} />}
             {step.index === 1 && <InputVision vision={userCareer.vision} dispatch={userCareerDispatch} />}
             {step.index === 2 && <Mbti field={userCareer.field} dispatch={userCareerDispatch} question={userCareer.question} />}
