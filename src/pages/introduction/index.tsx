@@ -199,6 +199,7 @@ export function UserTestimonial() {
 
     return (
         <div id='userTestimonial' className={style.userTestimonialSection}>
+            <title>aeDesignsQuest</title>
             <h2>利用者の声</h2>
             <div className={style.userTestimonial}>
                 <div className={style.userDetailWrap}>
@@ -255,7 +256,7 @@ export default function Introduction() {
                         <h3>自分を知り、未来を創る。</h3>
                         <p>これは単なるポートフォリオサポートツールではありません。<br />
                             あなたの未来、キャリア、夢を形にするためのマジックボックスです。</p>
-                        <Button darkColor url='#' text='今すぐ始めよう' />
+                        <Button darkColor url='/createStatus' text='今すぐ始めよう' />
                     </div>
                     <picture className={style.topViewImg}><img src={getImagePath("mainVisual.svg")} alt="" /></picture>
                 </div>
@@ -324,7 +325,7 @@ export default function Introduction() {
                 <h2>さあ、準備は整いましたか？<br />
                     私たちと一緒に、あなたのキャリアデザインを<br />
                     素敵に彩りましょう！</h2>
-                <Button url='#' text='はじめましょう！' />
+                <Button url='/createStatus' text='はじめましょう！' />
             </div>
             <footer className={style.footer}>
                 <ul>

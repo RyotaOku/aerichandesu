@@ -190,6 +190,7 @@ export default function Main() {
 
     return (
         <Frame className={step.index === 2 ? style.scrollable : ''}>
+            <title>Webデザイナーの未来を彩る性格診断 | aeDesignsQuest</title>
             {step.index !== 4 && <CreateStatusHeader className={step.index === 2 ? style.scrollableHeader : ''} step={step.index} maxStep={step.maxStep} dispatch={indexDispatch} />}
             {step.index === 0 && <CareerCategories dispatch={userCareerDispatch} selectedOptions={userCareer.field} />}
             {step.index === 1 && <InputVision vision={userCareer.vision} dispatch={userCareerDispatch} />}
@@ -197,7 +198,7 @@ export default function Main() {
             {step.index === 3 && <SkillSelection dispatch={userCareerDispatch} selectedOptions={userCareer.skill} field={userCareer.field} />}
             {step.index === 4 && <Result userCareer={userCareer} />}
 
-            {/* {step.index !== 4 && <Button text={'次へ'}
+            {step.index !== 4 && <Button text={'次へ'}
                 disabled={isButtonDisabled}
                 className={step.index === 2 ? style.button + ' ' + style.scrollableButton : style.button} onClick={() => {
                     if (step.index === step.maxStep) {
@@ -205,15 +206,15 @@ export default function Main() {
                     } else {
                         indexDispatch({ type: 'NEXT_INDEX' })
                     }
-                }} />} */}
-            <Button text={'次へ'}
+                }} />}
+            {/* <Button text={'次へ'}
                 className={step.index === 2 ? style.button + ' ' + style.scrollableButton : style.button} onClick={() => {
                     if (step.index === step.maxStep) {
                         return
                     } else {
                         indexDispatch({ type: 'NEXT_INDEX' })
                     }
-                }} />
+                }} /> */}
         </Frame>
     )
 }
@@ -249,9 +250,11 @@ type resultProps = {
 function FirstResult({ result }: FirstResultProps) {
     return (
         <>
-            <h2 className={styles.resultTitle}><span>あなたは...</span>{result.title}</h2>
-            <picture className={styles.imageWrap}><img src="" alt="" /></picture>
-            <p className={styles.text}>{result.text}</p>
+            <h2 className={styles.resultTitle}><span>あなたは...</span>{result.title}フロントエンドのアート職人</h2>
+            <picture className={styles.firstImageWrap + ' ' + styles.imageWrap}><img src="/images/artResult.png" alt="" /></picture>
+            <p className={styles.text + ' ' + styles.firstText}>{result.text}HTML CSS JSを使って美しいUIを構築する職人気質な人物。<br />
+                フロントエンドのアート職人は、デザインから実装までを一直線に描きながら、<br />
+                最適なUIとUXを提供し、ユーザー体験を向上させます。</p>
         </>
     )
 }

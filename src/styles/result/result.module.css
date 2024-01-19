@@ -99,3 +99,17 @@
 .statusText {
     text-align: center;
 }
+
+.firstImageWrap {
+    border: none !important;
+    width: 40% !important;
+    margin-bottom: 0.5rem !important;
+}
+
+.firstImageWrap img {
+    width: 100%;
+}
+
+.firstText {
+    width: 80% !important;
+}

@@ -13,6 +13,10 @@ export default function Footer({ activeIndex, onClick }: PaginatorProps) {
     };
 
     const handleNextClick = () => {
+        if (activeIndex === 6) {
+            console.log('tintin');
+
+        }
         if (activeIndex < 6) {  // 7ページ分のインデックスなので、最大インデックスは6
             onClick('NEXT_INDEX');
         }
