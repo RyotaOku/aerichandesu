@@ -12,35 +12,90 @@ export default function Main() {
 }
 
 function MainContent() {
+
+    const genreBoxes = [
+        {
+            imageSrc: '/images/visionResult.png',
+            title: 'Engineer A',
+            name: 'ビジョンの先導者',
+            color: '#AF216E'
+        },
+        {
+            imageSrc: '/images/visualResult.png',
+            title: 'Designer SR',
+            name: 'ビジュアルの道化師',
+            color: '#6C4E00'
+        },
+        {
+            imageSrc: '/images/aeriResult.png',
+            title: 'aerichandesu G',
+            name: 'aeのMain Rapper',
+            color: '#2869A6'
+        },
+        {
+            imageSrc: '/images/sovietResult.png',
+            title: 'Soviet Reader SS',
+            name: '平和の書記長',
+            color: '#C60000'
+        }
+        // 必要に応じて他のボックスも同様に追加
+    ];
+
     return (
         <div className={style.wrap}>
             <h3 className={style.mainTitle}>あなたと相性のいいパートナー</h3>
             <div className={style.partner}>
                 <div className={style.carouselWrap}>
-                    <div className={style.genreBox}>
-                        <picture><img src="/images/visionResult.png" alt="" /></picture>
-                        <p className={style.genreTitle}>Engineer A</p>
-                        <h4 className={style.genreName} style={{ color: '#AF216E' }}>ビジョンの先導者</h4>
-                    </div>
-                    <div className={style.genreBox}>
-                        <picture><img src="/images/visualResult.png" alt="" /></picture>
-                        <p className={style.genreTitle}>Designer SR</p>
-                        <h4 className={style.genreName} style={{ color: '#6C4E00' }}>ビジュアルの道化師</h4>
-                    </div>
-                    <div className={style.genreBox}>
-                        <picture><img src="/images/aeriResult.png" alt="" /></picture>
-                        <p className={style.genreTitle}>aerichandesu G</p>
-                        <h4 className={style.genreName} style={{ color: '#2869A6' }}>aeのMain Rapper</h4>
-                    </div>
-                    <div className={style.genreBox}>
-                        <picture><img src="/images/sovietResult.png" alt="" /></picture>
-                        <p className={style.genreTitle}>Soviet Reader SS</p>
-                        <h4 className={style.genreName} style={{ color: '#C60000' }}>平和の書記長</h4>
-                    </div>
+                    {genreBoxes.map((box, index) => (
+                        <GenreBox key={index} {...box} />
+                    ))}
                 </div>
+            </div>
+            <div className={style.saying}>
+                <h4 className={style.sayingContent}>大切なのは、疑問を持つのをやめないこと。好奇心はそれ自体に存在意義があるのだ。</h4>
+                <span className={style.sayingSpeaker}>アルベルト・アインシュタイン</span>
+            </div>
+
+            <div className={style.explanation}>
+                <p>デザインと技術の融合に優れ、美しいウェブ界面の創造に情熱を注いでいます。細部にこだわり、ユーザー体験を第一に考えるあなたの作品は、見た目だけでなく機能面でもユーザーを魅了します。<br /><br />あなたは、ウェブサイトが単なる情報の塊ではなく、一つの芸術作品であるという信念を持っており、それを通じてユーザーに感動を与えることができます。</p>
             </div>
         </div>
     )
+}
+
+type GenreBoxProps = {
+    imageSrc: string;
+    title: string;
+    name: string;
+    color: string;
+}
+
+function GenreBox({ imageSrc, title, name, color }: GenreBoxProps) {
+    return (
+        <div className={style.genreBox}>
+            <picture>
+                <img src={imageSrc} alt="" />
+            </picture>
+            <p className={style.genreTitle}>{title}</p>
+            <h4 className={style.genreName} style={{ color: color }}>{name}</h4>
+        </div>
+    );
+}
+
+type CarouselProps = {
+    boxes: GenreBoxProps[]; // genreBoxのプロパティの配列
+}
+
+function Carousel({ boxes }: CarouselProps) {
+    return (
+        <div className={style.partner}>
+            <div className={style.carouselWrap}>
+                {boxes.map((box, index) => (
+                    <GenreBox key={index} {...box} />
+                ))}
+            </div>
+        </div>
+    );
 }
 
 function LeftContent() {
