@@ -25,7 +25,7 @@
 }
 
 .parentBar {
-    padding-top: 4rem;
+    padding-top: 5rem;
     padding-left: 1.6rem;
     padding-right: 1.6rem;
     color: #fff;
@@ -43,18 +43,148 @@
 }
 
 .contentBox {
-    border: 1px solid #000;
     margin-top: 3rem;
 }
 
 .contentBox .contentTitle {
     font-weight: bold;
-    line-height: 2.2;
+    line-height: 2;
+    position: relative;
+    padding-left: 0.5rem;
+    display: inline-block;
 }
 
-.contentBox .contentTitle::before {
-    content: '🔸';
-    display: inline-block;
-    padding-right: 0.3rem;
-    scale: 1.2;
+.contentBox .contentTitle+p {
+    line-height: 1.7;
+}
+
+.logoWrap {
+    display: block;
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+    margin-top: 3.8rem;
+}
+
+.logoWrap img {
+    width: 100%;
+}
+
+.linkCopyWrap {
+    border: 1px solid #bbbbbb;
+    border-radius: 8px;
+    height: 3rem;
+    background: #fff;
+    transition: 0.2s;
+    margin-top: 0.5rem;
+}
+
+.linkCopyWrap:hover {
+    outline: solid #3b82f6;
+    outline-width: 2px;
+}
+
+.linkCopyWrap:has(input:focus) {
+    box-shadow: 0 0 0 0.2rem #bfdbfe;
+    border-color: #3b82f6;
+    outline: none;
+}
+
+.linkCopyWrap input,
+.linkCopyWrap button {
+    height: 100%;
+    border: none;
+}
+
+.linkCopyWrap input {
+    width: 90%;
+    padding: 0.5rem;
+}
+
+.linkCopyWrap button {
+    width: 10%;
+}
+
+.wrap {
+    padding-top: 3rem;
+    padding-left: 35rem;
+    overflow: hidden;
+    /* position: relative; */
+}
+
+.wrap::after {
+    content: '';
+    position: absolute;
+    bottom: 60px;
+    /* 下端からの位置 */
+    right: 0;
+    /* 右端からの位置 */
+    width: 200px;
+    /* 幅を親要素と同じに設定 */
+    height: 60px;
+    /* 高さを適宜設定 */
+    background-color: #006C61;
+    /* 背景色を緑に設定 */
+    transform: skewY(-45deg);
+    /* 斜めに傾ける */
+    transform-origin: bottom right;
+    /* 右下を基点に変形 */
+}
+
+.wrap .mainTitle {
+    color: #006C61;
+    font-size: 1.6rem;
+}
+
+.partner {
+    margin-left: -1rem;
+    overflow-x: scroll;
+    padding: 1rem;
+}
+
+.partner .carouselWrap {
+    width: fit-content;
+    display: flex;
+    gap: 1rem;
+}
+
+.partner::-webkit-scrollbar {
+    display: none;
+}
+
+.genreBox {
+    border-radius: 12px;
+    box-shadow: 0 0 18px rgba(151, 151, 151, 0.3);
+    width: 12rem;
+    padding: 1.2rem 1rem 1rem 1rem;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.genreBox picture {
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+    height: 8rem;
+}
+
+.genreBox picture img {
+    width: 85%;
+    scale: 0.9;
+    object-fit: cover;
+    -webkit-user-drag: none;
+}
+
+.genreBox .genreTitle {
+    color: #a1a1a1;
+    font-weight: bold;
+    font-size: 0.85rem;
+    line-height: 1.8;
+}
+
+.genreBox .genreName {
+    font-weight: bold;
+    font-size: 1.1rem;
 }

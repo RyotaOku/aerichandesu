@@ -8,7 +8,6 @@ type RadioQuestionProps = {
     index: number,
     isActive: boolean,
     setActiveQuestionIndex: React.Dispatch<React.SetStateAction<number>>
-
 };
 
 export enum AnswerOption {

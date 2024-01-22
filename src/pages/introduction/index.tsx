@@ -333,7 +333,7 @@ export default function Introduction() {
                     <li><Link to='#'>お問い合わせ</Link></li>
                     <li><Link to='#'>私たちについて</Link></li>
                 </ul>
-                <p><small>Service Name.inc &copy; 2023</small></p>
+                <p><small>aeDesignsQuest.inc &copy; 2023</small></p>
                 <div className={style.snsIcon}>
                     <Link to='#'><i className={`pi pi-twitter`} /></Link>
                     <Link to='#'><i className={`pi pi-instagram`} /></Link>
