@@ -15,6 +15,9 @@ export function CreateStatusHeader(props: headerProps) {
         <div className={style.header + ' ' + props.className}>
             <div className={style.headerContents}>
                 <button className={style.prev} onClick={() => {
+                    if (props.step === 0) {
+                        window.open('https://localhost:50443/introduction', '_self');
+                    }
                     props.dispatch({ type: 'PREV_INDEX' })
                 }}>
                     戻る

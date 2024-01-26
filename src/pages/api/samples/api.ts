@@ -10,10 +10,10 @@ type Output = {
 async function getAllArchives() {
     // const result = await client.query(``)
     return new Promise<string>((resolve) => {
-        setTimeout(() => {
+        // setTimeout(() => {
             const result = 'jason';
             resolve(result);
-        }, 3000);
+        // }, 3000);
     });
 }
 

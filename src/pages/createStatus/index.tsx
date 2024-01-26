@@ -207,14 +207,6 @@ export default function Main() {
                         indexDispatch({ type: 'NEXT_INDEX' })
                     }
                 }} />}
-            {/* <Button text={'次へ'}
-                className={step.index === 2 ? style.button + ' ' + style.scrollableButton : style.button} onClick={() => {
-                    if (step.index === step.maxStep) {
-                        return
-                    } else {
-                        indexDispatch({ type: 'NEXT_INDEX' })
-                    }
-                }} /> */}
         </Frame>
     )
 }
