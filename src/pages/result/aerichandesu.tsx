@@ -4,6 +4,7 @@ import { useState } from 'react'
 export default function Main() {
     return (
         <>
+            <title>フロントエンドのアート職人 | aeDesignsQuest</title>
             <div className={style.background}></div>
             <MainContent />
             <LeftContent />

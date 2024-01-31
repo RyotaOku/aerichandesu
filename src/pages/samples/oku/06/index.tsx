@@ -39,7 +39,7 @@ export default function Main() {
 
     return (
         <>
-            <input type="number" value={inputValue} onChange={(e) => setInputValue(Number(e.target.value))} />
+            <input type="number" value={inputValue} onChange={(e) => setInputValue(Number(e.target.value))} style={{ border: '1px solid black' }} />
             <button onClick={handleButtonClick}>Submit</button>
             <p>{result}</p>
             <Authentication />
@@ -73,7 +73,8 @@ function Authentication() {
             <button onClick={() => {
                 handleClick()
             }}>ログイン</button>
-            {state.isLoading && <div style={{ position: 'fixed', inset: 0, background: '#0000000f', width: '100%', height: '100vh' }}><ProgressSpinner style={{ position: 'fixed', inset: '50%' }} /></div>}
+            <p>{state.isLoading.toString()}</p>
+            {state.isLoading===true && <div style={{ position: 'fixed', inset: 0, background: '#0000000f', width: '100%', height: '100vh' }}><ProgressSpinner style={{ position: 'fixed', inset: '50%' }} /></div>}
         </div>
     )
 }

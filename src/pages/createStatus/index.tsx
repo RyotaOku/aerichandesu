@@ -314,8 +314,49 @@ export function Result({ userCareer }: resultProps) {
         };
     }
 
+    let start = 0;
+    let end = 32; // 最初の目標値
+    let mid = 77; // 二番目の目標値
+    let totalDuration = 6500; // 全体のミリ秒
+
+    const [progress, setProgress] = useState(start);
+
+    useEffect(() => {
+        // 最初の進行を設定
+        const firstTimeout = setTimeout(() => setProgress(end), totalDuration * (2 / 7));
+
+        // 中間地点への進行を設定
+        const midTimeout = setTimeout(() => setProgress(mid), totalDuration * (5 / 7));
+
+        // 最終的に100%に設定
+        const finalTimeout = setTimeout(() => setProgress(100), totalDuration); // 7秒後に100%へ
+
+        const timer = setInterval(() => {
+            setTextIndex((prevIndex) => (prevIndex + 1) % texts.length);
+        }, 3500);
+
+        return () => {
+            clearTimeout(firstTimeout);
+            clearTimeout(midTimeout);
+            clearTimeout(finalTimeout);
+            clearInterval(timer);
+        };
+    }, []); // 依存配列を空にして初回レンダー時のみ実行
+    const [textIndex, setTextIndex] = useState(0);
+    const texts = ["あなたの内面を探る旅", "真の理解をあなたと共に", "自己発見の冒険へ"]; // 表示するテキストの配列
+
     return (
         <Frame>
+            <div className={style.animation}>
+                <picture className={style.logoWrap}><img src="/images/logoset.png" alt="" /></picture>
+                <p className={`${style.progressText} ${style.fadeIn}`}>{texts[textIndex]}</p>
+                <div className={style.progressWrap}>
+                    <div className={style.progressBar}>
+                        <div className={style.progress} style={{ width: `${progress}%` }}></div>
+                    </div>
+                </div>
+
+            </div>
             <div className={styles.background}>
                 <div className={styles.wrap}>
                     {activeIndex.index === 0 && <FirstResult result={result} />}

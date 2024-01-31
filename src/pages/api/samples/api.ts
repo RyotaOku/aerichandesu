@@ -10,10 +10,10 @@ type Output = {
 async function getAllArchives() {
     // const result = await client.query(``)
     return new Promise<string>((resolve) => {
-        // setTimeout(() => {
+        setTimeout(() => {
             const result = 'jason';
             resolve(result);
-        // }, 3000);
+        }, 3000);
     });
 }
 
@@ -24,8 +24,10 @@ export default async function handler(
     const pass = req.body.pass
 
     if (pass !== 'jason') {
-        res.status(401).json({ error: 'Unauthorized' }); // ここでエラーを返す
-        return
+        setTimeout(() => {
+            res.status(401).json({ error: 'Unauthorized' }); // ここでエラーを返す
+            return
+        }, 3000);
     }
 
     try {
