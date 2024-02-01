@@ -15,7 +15,7 @@ type FirstResultProps = {
 }
 
 type OtherResultProps = {
-    status: statusArray
+    status: any
 }
 
 function FirstResult({ result }: FirstResultProps) {
