@@ -3,7 +3,7 @@ import style from '@/styles/components/result/statusData.module.css'
 import { statusArray, result } from '@/types/resultTypes'
 
 type Props = {
-    status: questionType
+    status: any
 }
 
 export default function Status({ status }: Props) {
