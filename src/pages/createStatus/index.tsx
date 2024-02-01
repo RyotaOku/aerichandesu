@@ -155,7 +155,7 @@ function SkillSelection(props: SkillProps) {
 
     return (
         <>
-            <h2 className={style.stepTitle}>最後です！あなたを彩るハイライトはどのジャンルですか？</h2>
+            <h2 className={style.stepTitle}>最後です！あなたの自信の源である得意分野はなんですか？</h2>
             <Select
                 multiple={true}
                 fourColumn={false}

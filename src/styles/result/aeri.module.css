@@ -56,7 +56,7 @@
     display: inline-block;
 }
 
-.contentBox .contentTitle + p {
+.contentBox .contentTitle+p {
     line-height: 1.7;
 }
 
@@ -201,22 +201,27 @@
     font-weight: bold;
     font-size: 1.1rem;
 }
+
 .serviceBox .serviceName {
     font-weight: bold;
     font-size: 1rem;
     text-align: center;
 }
+
 .serviceBox {
     width: 10rem;
     padding-top: 0.4rem;
 }
+
 .serviceBox picture {
     margin-bottom: 0.2rem;
 }
+
 .serviceBox picture img {
     height: 85%;
     object-fit: contain;
 }
+
 .saying {
     margin-top: 3rem;
     margin-bottom: 3rem;
@@ -245,12 +250,14 @@
     gap: 32px;
     margin-bottom: 64px;
 }
+
 .nextStep {
     display: grid;
     grid-template-columns: 40px 1fr;
     grid-template-rows: auto;
     padding-right: 64px;
 }
+
 .nextStepNum {
     grid-row: 1/2;
     grid-column: 1/2;
@@ -265,24 +272,29 @@
     font-size: 1.2rem;
     border-radius: 0.2rem;
 }
+
 .nextStepText {
     grid-row: 1/2;
     grid-column: 2/3;
     padding-left: 16px;
 }
+
 .nextStepTitle {
     font-size: 1.3rem;
 }
+
 .nextStepContent {
     font-size: 1rem;
     line-height: 1.5rem;
 }
+
 .companies {
     display: flex;
     flex-direction: column;
     gap: 32px;
     padding-right: 64px;
 }
+
 .companyBox {
     position: relative;
     top: 0;
@@ -294,10 +306,12 @@
     transition: 0.3s;
     display: flex;
 }
+
 .companyBox picture {
     width: 160px;
     height: 120px;
 }
+
 .companyBox picture img {
     width: 100%;
     height: 100%;
@@ -314,4 +328,145 @@
     margin-top: 0.5rem;
     font-size: 1.1rem;
     line-height: 1.5rem;
+}
+
+.scrollWrap {
+    width: 100%;
+    height: 100vh;
+    background: #000000a2;
+    position: fixed;
+    inset: 0;
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 10rem;
+    cursor: pointer;
+    opacity: 0;
+    animation: anime 5s forwards;
+}
+
+@keyframes anime {
+    0% {
+        display: none;
+        opacity: 0;
+    }
+
+    30% {
+        display: none;
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+        display: flex;
+    }
+
+    80% {
+        opacity: 1;
+        display: flex;
+    }
+
+    100% {
+        display: none;
+        opacity: 0;
+    }
+}
+
+.scrolldown2 {
+    position: fixed;
+}
+
+.scrolldown2::after,
+.scrolldown2::before {
+    scale: 1.5;
+}
+
+.scrolldown2 span {
+    /*描画位置*/
+    /*テキストの形状*/
+    color: #eee;
+    font-size: 1.2rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    /*縦書き設定*/
+    /* -ms-writing-mode: tb-rl; */
+    /* -webkit-writing-mode: vertical-rl; */
+    /* writing-mode: vertical-rl; */
+}
+
+/* 丸の描写 */
+.scrolldown2:before {
+    content: "";
+    /*描画位置*/
+    position: absolute;
+    bottom: -6rem;
+    left: calc(50% - 4px);
+    /*丸の形状*/
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #eee;
+    /*丸の動き1.6秒かけて透過し、永遠にループ*/
+    animation:
+        circlemove 1.6s ease-in-out infinite,
+        cirlemovehide 1.6s ease-out infinite;
+}
+
+/*下からの距離が変化して丸の全体が上から下に動く*/
+@keyframes circlemove {
+    0% {
+        bottom: -3rem;
+    }
+
+    100% {
+        bottom: -6rem;
+    }
+}
+
+/*上から下にかけて丸が透過→不透明→透過する*/
+@keyframes cirlemovehide {
+    0% {
+        opacity: 0
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    80% {
+        opacity: 0.9;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+/* 線の描写 */
+.scrolldown2:after {
+    content: "";
+    /*描画位置*/
+    position: absolute;
+    bottom: -6rem;
+    left: 50%;
+    /*線の形状*/
+    width: 2px;
+    height: 50px;
+    background: #eee;
+}
+
+.skillWrap {
+    margin-top: 3rem;
+    height: 8rem;
+    border: 1px solid #000;
+    display: flex;
+    gap: 1rem;
+}
+
+.skillWrap div {
+    height: 100%;
+    aspect-ratio: 1/1;
+    border: 1px solid #000;
+    border-radius: 12px;
 }

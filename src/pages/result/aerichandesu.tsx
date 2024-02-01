@@ -1,14 +1,43 @@
 import style from '@/styles/result/aeri.module.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export default function Main() {
+    const [contentIndex, setContentIndex] = useState(0);
+    const contentComponents = [<MainContent key={1} />, <MainContent2 key={2} />, <MainContent3 key={3} />];
+
+    useEffect(() => {
+        let lastScrollTime = 0;
+        let accumulatedDeltaY = 0; // 累積された縦スクロール量
+        const triggerDelta = 300; // 切り替えを引き起こす縦スクロール量
+
+        const handleWheel = (event: any) => {
+            const now = Date.now();
+            accumulatedDeltaY += event.deltaY;
+
+            // 一定時間（例えば500ミリ秒）内の連続したスクロールイベントは無視する
+            if (now - lastScrollTime < 500) return;
+            lastScrollTime = now;
+
+            // 一定量以上スクロールした場合にのみ次のコンテンツへ
+            if (Math.abs(accumulatedDeltaY) > triggerDelta) {
+                setContentIndex(prevIndex => (prevIndex + 1) % contentComponents.length);
+                accumulatedDeltaY = 0; // 累積値をリセット
+            }
+        };
+
+        window.addEventListener('wheel', handleWheel, { passive: true });
+
+        return () => {
+            window.removeEventListener('wheel', handleWheel);
+        };
+    }, []);
+
     return (
         <>
             <title>フロントエンドのアート職人 | aeDesignsQuest</title>
             <div className={style.background}></div>
-            <MainContent />
-            {/* <MainContent2 /> */}
-            {/* <MainContent3 /> */}
+            <div className={style.scrollWrap}><div className={style.scrolldown2}><span>スクロールすることで続きのコンテンツを確認できます</span></div></div>
+            {contentComponents[contentIndex]}
             <LeftContent />
         </>
     )
@@ -61,6 +90,9 @@ function MainContent() {
 
             <div className={style.explanation}>
                 <p>デザインと技術の融合に優れ、美しいウェブ界面の創造に情熱を注いでいます。細部にこだわり、ユーザー体験を第一に考えるあなたの作品は、見た目だけでなく機能面でもユーザーを魅了します。<br /><br />あなたは、ウェブサイトが単なる情報の塊ではなく、一つの芸術作品であるという信念を持っており、それを通じてユーザーに感動を与えることができます。</p>
+            </div>
+            <div className={style.skillWrap}>
+                <div>a</div>
             </div>
         </div>
     )
