@@ -1,12 +1,12 @@
 .background {
     width: 100%;
     height: 100vh;
-    background: #E7E7E7;
+    background: #e7e7e7;
     min-width: 1200px;
 }
 
 .parentBar {
-    background: #006C61;
+    background: #006c61;
     position: fixed;
     left: 5rem;
     top: 0;
@@ -56,7 +56,7 @@
     display: inline-block;
 }
 
-.contentBox .contentTitle+p {
+.contentBox .contentTitle + p {
     line-height: 1.7;
 }
 
@@ -115,7 +115,7 @@
 }
 
 .wrap::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: 60px;
     /* 下端からの位置 */
@@ -125,7 +125,7 @@
     /* 幅を親要素と同じに設定 */
     height: 60px;
     /* 高さを適宜設定 */
-    background-color: #006C61;
+    background-color: #006c61;
     /* 背景色を緑に設定 */
     transform: skewY(-45deg);
     /* 斜めに傾ける */
@@ -134,7 +134,7 @@
 }
 
 .wrap .mainTitle {
-    color: #006C61;
+    color: #006c61;
     font-size: 1.6rem;
     margin-bottom: 1rem;
 }
@@ -172,7 +172,6 @@
     position: relative;
     top: -4px;
     box-shadow: 0 0 18px rgba(151, 151, 151, 0.6);
-
 }
 
 .genreBox picture {
@@ -202,11 +201,26 @@
     font-weight: bold;
     font-size: 1.1rem;
 }
-
+.serviceBox .serviceName {
+    font-weight: bold;
+    font-size: 1rem;
+    text-align: center;
+}
+.serviceBox {
+    width: 10rem;
+    padding-top: 0.4rem;
+}
+.serviceBox picture {
+    margin-bottom: 0.2rem;
+}
+.serviceBox picture img {
+    height: 85%;
+    object-fit: contain;
+}
 .saying {
     margin-top: 3rem;
     margin-bottom: 3rem;
-    border-left: 6px solid #006C61;
+    border-left: 6px solid #006c61;
     padding: 0.6rem 0 0.6rem 1.2rem;
 }
 
@@ -223,4 +237,81 @@
 
 .explanation {
     padding-right: 10rem;
+}
+
+.nextSteps {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    margin-bottom: 64px;
+}
+.nextStep {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    grid-template-rows: auto;
+    padding-right: 64px;
+}
+.nextStepNum {
+    grid-row: 1/2;
+    grid-column: 1/2;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    background: #006c61;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.2rem;
+    border-radius: 0.2rem;
+}
+.nextStepText {
+    grid-row: 1/2;
+    grid-column: 2/3;
+    padding-left: 16px;
+}
+.nextStepTitle {
+    font-size: 1.3rem;
+}
+.nextStepContent {
+    font-size: 1rem;
+    line-height: 1.5rem;
+}
+.companies {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding-right: 64px;
+}
+.companyBox {
+    position: relative;
+    top: 0;
+    border-radius: 12px;
+    box-shadow: 0 0 18px rgba(151, 151, 151, 0.3);
+    width: 100%;
+    padding: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+}
+.companyBox picture {
+    width: 160px;
+    height: 120px;
+}
+.companyBox picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.companyBox:hover {
+    position: relative;
+    top: -4px;
+    box-shadow: 0 0 18px rgba(151, 151, 151, 0.6);
+}
+
+.companyBoxContent {
+    margin-top: 0.5rem;
+    font-size: 1.1rem;
+    line-height: 1.5rem;
 }
