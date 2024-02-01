@@ -21,7 +21,7 @@ export function getFieldData() {
             weaken: false
         },
         {
-            image: '/images/checkIcons/allRounder.png',
+            image: '/images/checkIcons/allrounder.png',
             title: 'オールラウンダー',
             text: '多才な才能でさまざまなチャレンジを受け止める、ジャンルを超えた冒険者へ。',
             weaken: false
