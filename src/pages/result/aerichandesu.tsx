@@ -311,7 +311,7 @@ function ContentBox({ title, content, iconClassName, shareLink }: ContentBoxProp
             {iconClassName && <i className={iconClassName}></i>}
             <p className={style.contentTitle}>{title}</p>
             {content && <p>{content}</p>}
-            {shareLink && <LinkCopyComponent providedLink='https://aerichandesu-afwv3rw1w-ryotaokus-projects.vercel.app/createStatus' />}
+            {shareLink && <LinkCopyComponent providedLink='https://aerichandesu.vercel.app/result/aerichandesu' />}
         </div>
     )
 };
