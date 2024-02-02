@@ -211,6 +211,9 @@
 .serviceBox {
     width: 10rem;
     padding-top: 0.4rem;
+    scale: 0.7;
+    margin-left: -2rem;
+    /* 突貫工事で小さく */
 }
 
 .serviceBox picture {
@@ -457,16 +460,26 @@
 }
 
 .skillWrap {
-    margin-top: 3rem;
     height: 8rem;
-    border: 1px solid #000;
     display: flex;
     gap: 1rem;
+    scale: 1.2;
+    padding-left: 5rem;
+    cursor: pointer;
 }
 
 .skillWrap div {
     height: 100%;
     aspect-ratio: 1/1;
-    border: 1px solid #000;
     border-radius: 12px;
+}
+
+.plus {
+    display: block;
+
+}
+
+.plus img {
+    width: 65%;
+    cursor: pointer;
 }

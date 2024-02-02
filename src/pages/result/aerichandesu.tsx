@@ -91,9 +91,10 @@ function MainContent() {
             <div className={style.explanation}>
                 <p>デザインと技術の融合に優れ、美しいウェブ界面の創造に情熱を注いでいます。細部にこだわり、ユーザー体験を第一に考えるあなたの作品は、見た目だけでなく機能面でもユーザーを魅了します。<br /><br />あなたは、ウェブサイトが単なる情報の塊ではなく、一つの芸術作品であるという信念を持っており、それを通じてユーザーに感動を与えることができます。</p>
             </div>
-            <div className={style.skillWrap}>
-                <div>a</div>
-            </div>
+            <h3 className={style.mainTitle} style={{ margin: '1rem 0 0rem' }}>あなたの強み</h3>
+            <picture className={style.skillWrap}>
+                <img src="/images/image.png" alt="" />
+            </picture>
         </div>
     )
 }
@@ -185,6 +186,10 @@ function MainContent3() {
                     <CompanyBox key={index} {...box} />
                 ))}
             </div>
+
+            <h3 className={style.mainTitle} style={{ marginTop: '3rem' }}>aeDesigns + に加入して、追加コンテンツにアクセスしよう</h3>
+            <picture className={style.plus}><img src="/images/image2.png" alt="" /></picture>
+
         </div>
     )
 }
@@ -306,7 +311,7 @@ function ContentBox({ title, content, iconClassName, shareLink }: ContentBoxProp
             {iconClassName && <i className={iconClassName}></i>}
             <p className={style.contentTitle}>{title}</p>
             {content && <p>{content}</p>}
-            {shareLink && <LinkCopyComponent providedLink='https://ae-design-quest.com/result?=23845sq4tjhnfejnsk' />}
+            {shareLink && <LinkCopyComponent providedLink='https://aerichandesu-afwv3rw1w-ryotaokus-projects.vercel.app/createStatus' />}
         </div>
     )
 };

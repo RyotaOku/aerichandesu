@@ -15,7 +15,7 @@ export default function Footer({ activeIndex, onClick }: PaginatorProps) {
     const handleNextClick = () => {
         if (activeIndex === 6) {
             console.log('tintin');
-            window.open('https://localhost:50443/result/aerichandesu');
+            window.open('https://aerichandesu-afwv3rw1w-ryotaokus-projects.vercel.app/result/aerichandesu');
 
         }
         if (activeIndex < 6) {  // 7ページ分のインデックスなので、最大インデックスは6
